@@ -328,19 +328,19 @@ export default function BuiltByBXCPage() {
     setSelectedItem(item)
   }
 
-  const nextLightbox = () => {
+  const nextLightbox = React.useCallback(() => {
     if (!filteredItems.length) return
     const nextIdx = (lightboxIndex + 1) % filteredItems.length
     setLightboxIndex(nextIdx)
     setSelectedItem(filteredItems[nextIdx])
-  }
+  }, [filteredItems, lightboxIndex])
 
-  const prevLightbox = () => {
+  const prevLightbox = React.useCallback(() => {
     if (!filteredItems.length) return
     const prevIdx = (lightboxIndex - 1 + filteredItems.length) % filteredItems.length
     setLightboxIndex(prevIdx)
     setSelectedItem(filteredItems[prevIdx])
-  }
+  }, [filteredItems, lightboxIndex])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -351,7 +351,7 @@ export default function BuiltByBXCPage() {
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedItem, lightboxIndex, filteredItems])
+  }, [selectedItem, nextLightbox, prevLightbox])
 
   const titleWords = ['Built', 'By', 'BXC.']
 
@@ -419,6 +419,7 @@ export default function BuiltByBXCPage() {
 
                     return (
                       <button
+                        suppressHydrationWarning
                         key={category}
                         onClick={() => setActiveCategory(category)}
                         className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
@@ -477,6 +478,7 @@ export default function BuiltByBXCPage() {
                 </div>
 
                 <button
+                  suppressHydrationWarning
                   onClick={() => setSelectedItem(null)}
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-sm transition-colors duration-200"
                   aria-label="Close Lightbox"
@@ -491,6 +493,7 @@ export default function BuiltByBXCPage() {
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
+                  suppressHydrationWarning
                   onClick={prevLightbox}
                   className="absolute left-2 md:left-4 z-30 w-12 h-12 rounded-full bg-black/70 hover:bg-bxc-accent text-white border border-white/20 flex items-center justify-center text-lg transition-all duration-200 active:scale-90 shadow-xl"
                   aria-label="Previous item"
@@ -527,6 +530,7 @@ export default function BuiltByBXCPage() {
                 </motion.div>
 
                 <button
+                  suppressHydrationWarning
                   onClick={nextLightbox}
                   className="absolute right-2 md:right-4 z-30 w-12 h-12 rounded-full bg-black/70 hover:bg-bxc-accent text-white border border-white/20 flex items-center justify-center text-lg transition-all duration-200 active:scale-90 shadow-xl"
                   aria-label="Next item"

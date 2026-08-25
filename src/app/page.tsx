@@ -25,18 +25,27 @@ import SmoothScroll from '@/components/SmoothScroll'
 import AnimationProvider from '@/components/AnimationProvider'
 import MarqueeText from '@/components/MarqueeText'
 
+// Track whether the intro has been played during this active browser session context.
+// This gets reset on a hard refresh, but persists during client-side Next.js navigation.
+let hasPlayedIntro = false;
+
 export default function Home() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(!hasPlayedIntro)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  const handleLoaderComplete = () => {
+    setLoading(false)
+    hasPlayedIntro = true
+  }
+
   return (
     <>
       {/* Video Intro Loader */}
-      {loading && <Loader onComplete={() => setLoading(false)} />}
+      {loading && <Loader onComplete={handleLoaderComplete} />}
 
       <AnimationProvider>
         <SmoothScroll>

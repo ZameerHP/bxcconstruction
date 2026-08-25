@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 interface MagneticButtonProps {
   children: React.ReactNode
@@ -62,14 +63,14 @@ export default function MagneticButton({
 
   if (href) {
     return (
-      <a href={href} onClick={onClick} className="inline-block focus:outline-none">
+      <Link href={href} onClick={onClick} className="inline-block focus:outline-none">
         {content}
-      </a>
+      </Link>
     )
   }
 
   return (
-    <button onClick={onClick} className="inline-block focus:outline-none bg-transparent p-0 border-none">
+    <button suppressHydrationWarning onClick={onClick} className="inline-block focus:outline-none bg-transparent p-0 border-none">
       {content}
     </button>
   )

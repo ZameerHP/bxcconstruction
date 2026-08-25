@@ -47,13 +47,30 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     }
   }, [])
 
-  // Scroll to top on pathname change
+  // Handle pathname changes and hashes
   useEffect(() => {
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true })
-    } else {
-      window.scrollTo(0, 0)
+    const handleHash = () => {
+      const hash = window.location.hash
+      if (hash) {
+        const target = document.querySelector(hash)
+        if (target && lenisRef.current) {
+          lenisRef.current.scrollTo(target as HTMLElement, { immediate: true })
+          return true
+        }
+      }
+      return false
     }
+
+    // Give Next.js a tick to render the new page
+    setTimeout(() => {
+      if (!handleHash()) {
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(0, { immediate: true })
+        } else {
+          window.scrollTo(0, 0)
+        }
+      }
+    }, 100)
   }, [pathname])
 
   return <>{children}</>

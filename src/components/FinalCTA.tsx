@@ -76,12 +76,13 @@ export default function FinalCTA() {
                           Full Name *
                         </label>
                         <input
+                          suppressHydrationWarning
                           type="text"
                           id="name"
                           name="name"
                           required
                           className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
-                          placeholder="Marcus Sterling"
+                          placeholder="Your full name"
                         />
                       </div>
 
@@ -90,75 +91,94 @@ export default function FinalCTA() {
                           Email Address *
                         </label>
                         <input
+                          suppressHydrationWarning
                           type="email"
                           id="email"
                           name="email"
                           required
                           className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
-                          placeholder="marcus@example.com"
+                          placeholder="your@email.com"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
-                        <label htmlFor="projectType" className="block text-[11px] uppercase tracking-wider font-semibold text-bxc-bg/80 mb-2">
-                          Project Category
+                        <label htmlFor="phone" className="block text-[11px] uppercase tracking-wider font-semibold text-bxc-bg/80 mb-2">
+                          Phone Number
                         </label>
-                        <select
-                          id="projectType"
-                          name="projectType"
-                          defaultValue="Residential"
-                          className="w-full rounded-xl bg-[#1d201e] border border-white/15 px-4 py-3 text-sm text-bxc-bg focus:outline-none focus:border-bxc-accent transition-all"
-                        >
-                          <option value="Residential">Custom Residential Estate</option>
-                          <option value="Commercial">Commercial Development</option>
-                          <option value="Renovation">Luxury Structural Renovation</option>
-                          <option value="Consulting">Engineering & Feasibility</option>
-                        </select>
+                        <input
+                          suppressHydrationWarning
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
+                          placeholder="Your phone number"
+                        />
                       </div>
 
                       <div>
-                        <label htmlFor="budget" className="block text-[11px] uppercase tracking-wider font-semibold text-bxc-bg/80 mb-2">
-                          Estimated Budget
+                        <label htmlFor="location" className="block text-[11px] uppercase tracking-wider font-semibold text-bxc-bg/80 mb-2">
+                          Project Location
                         </label>
-                        <select
-                          id="budget"
-                          name="budget"
-                          defaultValue="1m-5m"
-                          className="w-full rounded-xl bg-[#1d201e] border border-white/15 px-4 py-3 text-sm text-bxc-bg focus:outline-none focus:border-bxc-accent transition-all"
-                        >
-                          <option value="500k-1m">$500K – $1M</option>
-                          <option value="1m-5m">$1M – $5M</option>
-                          <option value="5m-15m">$5M – $15M</option>
-                          <option value="15m+">$15M+</option>
-                        </select>
+                        <input
+                          suppressHydrationWarning
+                          type="text"
+                          id="location"
+                          name="location"
+                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
+                          placeholder="City, Neighborhood, etc."
+                        />
                       </div>
                     </div>
 
                     <div>
+                      <label htmlFor="projectType" className="block text-[11px] uppercase tracking-wider font-semibold text-bxc-bg/80 mb-2">
+                        Project Type *
+                      </label>
+                      <select
+                        suppressHydrationWarning
+                        id="projectType"
+                        name="projectType"
+                        required
+                        defaultValue=""
+                        className="w-full rounded-xl bg-[#1d201e] border border-white/15 px-4 py-3 text-sm text-bxc-bg focus:outline-none focus:border-bxc-accent transition-all"
+                      >
+                        <option value="" disabled>Select project type...</option>
+                        <option value="Custom Residential">Custom Residential</option>
+                        <option value="Commercial Construction">Commercial Construction</option>
+                        <option value="Renovation & Remodeling">Renovation & Remodeling</option>
+                        <option value="General Contracting">General Contracting</option>
+                        <option value="Engineering & Feasibility">Engineering & Feasibility</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    <div>
                       <label htmlFor="message" className="block text-[11px] uppercase tracking-wider font-semibold text-bxc-bg/80 mb-2">
-                        Project Details & Location
+                        Project Details *
                       </label>
                       <textarea
+                        suppressHydrationWarning
                         id="message"
                         name="message"
-                        rows={3}
+                        rows={4}
                         required
                         className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all resize-none"
-                        placeholder="Tell us about the property, vision, and timeline..."
+                        placeholder="Tell us briefly about your project..."
                       />
                     </div>
 
                     <button
+                      suppressHydrationWarning
                       type="submit"
                       disabled={loading}
                       className="btn-bronze rounded-full px-8 py-3.5 w-full text-xs uppercase tracking-widest font-bold shadow-lg shadow-bxc-accent/25 hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2"
                     >
                       {loading ? (
-                        <span>Processing Brief...</span>
+                        <span>Processing...</span>
                       ) : (
-                        <span>Submit Project Brief →</span>
+                        <span>REQUEST A CONSULTATION →</span>
                       )}
                     </button>
                   </form>

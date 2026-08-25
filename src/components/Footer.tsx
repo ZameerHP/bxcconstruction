@@ -39,29 +39,29 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5 text-xs md:text-sm text-bxc-bg/70">
                 <li>
-                  <a href="#services" className="hover:text-bxc-accent transition-colors">
+                  <Link href="/#services" className="hover:text-bxc-accent transition-colors">
                     Services
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#projects" className="hover:text-bxc-accent transition-colors">
+                  <Link href="/#projects" className="hover:text-bxc-accent transition-colors">
                     Selected Projects
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#process" className="hover:text-bxc-accent transition-colors">
+                  <Link href="/#process" className="hover:text-bxc-accent transition-colors">
                     Five-Phase Process
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#quality" className="hover:text-bxc-accent transition-colors">
+                  <Link href="/#quality" className="hover:text-bxc-accent transition-colors">
                     Standards & Quality
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#faq" className="hover:text-bxc-accent transition-colors">
+                  <Link href="/#faq" className="hover:text-bxc-accent transition-colors">
                     FAQ
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -88,10 +88,11 @@ export default function Footer() {
               <div className="text-xs md:text-sm text-bxc-bg/70 space-y-2 leading-relaxed">
                 <p>123 Construction Avenue, Suite 400</p>
                 <p>Toronto, ON M5V 2T6</p>
-                <p className="pt-2 font-mono text-bxc-accent">+1 (416) 555-0199</p>
-                <p>
-                  <a href="mailto:info@bxcconstruction.com" className="hover:text-white transition-colors underline">
-                    info@bxcconstruction.com
+                <p className="pt-2 font-mono text-bxc-accent">+1 (437) 450-5507</p>
+                <p className="font-mono text-bxc-accent">+1 (437) 973-4229</p>
+                <p className="pt-1">
+                  <a href="mailto:info@bxcconstruction.ca" className="hover:text-white transition-colors underline">
+                    info@bxcconstruction.ca
                   </a>
                 </p>
               </div>
@@ -103,9 +104,9 @@ export default function Footer() {
               © {new Date().getFullYear()} BXC Construction Inc. All rights reserved.
             </div>
             <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-bxc-accent transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-bxc-accent transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-bxc-accent transition-colors">Safety Protocols</a>
+              <Link href="/" className="hover:text-bxc-accent transition-colors">Privacy Policy</Link>
+              <Link href="/" className="hover:text-bxc-accent transition-colors">Terms of Service</Link>
+              <Link href="/" className="hover:text-bxc-accent transition-colors">Safety Protocols</Link>
             </div>
           </div>
         </ScrollReveal>

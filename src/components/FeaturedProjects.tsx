@@ -151,6 +151,7 @@ export default function FeaturedProjects() {
             {/* Slider Nav Buttons with Scale-Pulse Feedback */}
             <div className="absolute top-6 right-6 hidden md:flex items-center gap-2 z-20">
               <button
+                suppressHydrationWarning
                 onClick={() => emblaApi?.scrollPrev()}
                 aria-label="Previous project"
                 className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-bxc-accent hover:border-bxc-accent active:scale-90 transition-all duration-200"
@@ -158,6 +159,7 @@ export default function FeaturedProjects() {
                 ←
               </button>
               <button
+                suppressHydrationWarning
                 onClick={() => emblaApi?.scrollNext()}
                 aria-label="Next project"
                 className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-bxc-accent hover:border-bxc-accent active:scale-90 transition-all duration-200"
@@ -172,6 +174,7 @@ export default function FeaturedProjects() {
             <div className="flex items-center gap-2.5">
               {projects.map((_, index) => (
                 <button
+                  suppressHydrationWarning
                   key={index}
                   onClick={() => emblaApi?.scrollTo(index)}
                   aria-label={`Go to slide ${index + 1}`}

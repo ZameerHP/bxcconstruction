@@ -109,6 +109,7 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
+            suppressHydrationWarning
             className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-50 relative focus:outline-none"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
@@ -170,13 +171,13 @@ export default function Navbar() {
                 transition={{ delay: navLinks.length * 0.05 + 0.15, duration: 0.35 }}
                 className="mt-6"
               >
-                <a
+                <Link
                   href="/#contact"
                   className="btn-bronze rounded-full px-7 py-3 text-xs uppercase tracking-wider font-semibold inline-block shadow-lg"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Request a Consultation
-                </a>
+                </Link>
               </motion.div>
             </nav>
           </motion.div>

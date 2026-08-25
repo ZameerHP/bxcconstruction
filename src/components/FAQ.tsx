@@ -61,6 +61,7 @@ export default function FAQ() {
                   }`}
                 >
                   <button
+                    suppressHydrationWarning
                     onClick={() => toggleFAQ(index)}
                     className="w-full flex items-center justify-between p-6 text-left font-semibold focus:outline-none"
                     aria-expanded={isOpen}

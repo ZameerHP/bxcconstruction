@@ -11,14 +11,14 @@ export default function Loader({ onComplete }: LoaderProps) {
   const [phase, setPhase] = useState<'video' | 'reveal' | 'done'>('video')
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  const handleFinish = () => {
+  const handleFinish = React.useCallback(() => {
     if (phase !== 'video') return
     setPhase('reveal')
     setTimeout(() => {
       setPhase('done')
       onComplete()
     }, 850)
-  }
+  }, [phase, onComplete])
 
   useEffect(() => {
     const video = videoRef.current
@@ -47,7 +47,7 @@ export default function Loader({ onComplete }: LoaderProps) {
       clearTimeout(fallbackTimer)
       video.removeEventListener('ended', handleEnded)
     }
-  }, [phase])
+  }, [phase, handleFinish])
 
   if (phase === 'done') return null
 
@@ -92,6 +92,7 @@ export default function Loader({ onComplete }: LoaderProps) {
               </span>
 
               <button
+                suppressHydrationWarning
                 onClick={handleFinish}
                 className="text-[11px] font-semibold uppercase tracking-wider text-bxc-accent hover:text-bxc-text transition-colors duration-200 cursor-pointer py-1 px-2"
               >
