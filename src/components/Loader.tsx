@@ -62,17 +62,17 @@ export default function Loader({ onComplete }: LoaderProps) {
             key="video-wrapper"
             exit={{ opacity: 0, scale: 0.94, filter: 'blur(10px)' }}
             transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-white overflow-hidden px-4"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#d6d6d6] overflow-hidden px-4"
           >
             {/* Ambient luxury glow */}
-            <div className="absolute w-[500px] h-[500px] rounded-full bg-[#B08D57]/10 blur-[100px] pointer-events-none" />
+            <div className="absolute w-[500px] h-[500px] rounded-full bg-[#B08D57]/15 blur-[100px] pointer-events-none" />
 
             {/* Video container with perfect 300-380px compact size */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 w-full max-w-[360px] sm:max-w-[400px] aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl shadow-black/10 border border-bxc-border-light/60 bg-white"
+              className="relative z-10 w-full max-w-[360px] sm:max-w-[400px] aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl shadow-black/15 border border-black/10 bg-[#d6d6d6]"
             >
               <video
                 ref={videoRef}
@@ -92,7 +92,7 @@ export default function Loader({ onComplete }: LoaderProps) {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="relative z-10 mt-6 flex items-center gap-6"
             >
-              <span className="text-[10px] uppercase font-semibold tracking-[0.25em] text-bxc-text/40">
+              <span className="text-[10px] uppercase font-semibold tracking-[0.25em] text-bxc-text/60">
                 BXC CONSTRUCTION
               </span>
 
@@ -112,7 +112,7 @@ export default function Loader({ onComplete }: LoaderProps) {
         <div className="absolute inset-0 z-30 pointer-events-none overflow-hidden">
           {/* Left curtain */}
           <motion.div
-            className="absolute top-0 left-0 w-1/2 h-full bg-white shadow-[10px_0_30px_rgba(0,0,0,0.05)]"
+            className="absolute top-0 left-0 w-1/2 h-full bg-[#d6d6d6] shadow-[10px_0_30px_rgba(0,0,0,0.08)]"
             initial={{ x: 0 }}
             animate={{ x: '-100%' }}
             transition={{ duration: 1.0, ease: [0.83, 0, 0.17, 1] }}
@@ -120,7 +120,7 @@ export default function Loader({ onComplete }: LoaderProps) {
 
           {/* Right curtain */}
           <motion.div
-            className="absolute top-0 right-0 w-1/2 h-full bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.05)]"
+            className="absolute top-0 right-0 w-1/2 h-full bg-[#d6d6d6] shadow-[-10px_0_30px_rgba(0,0,0,0.08)]"
             initial={{ x: 0 }}
             animate={{ x: '100%' }}
             transition={{ duration: 1.0, ease: [0.83, 0, 0.17, 1] }}
