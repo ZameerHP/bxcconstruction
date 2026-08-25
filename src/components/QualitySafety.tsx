@@ -91,7 +91,7 @@ export default function QualitySafety() {
             <ScrollReveal delay={0.2}>
               <div className="group relative aspect-[4/5] rounded-card-lg overflow-hidden border border-bxc-border-light shadow-2xl">
                 <Image
-                  src="/images/user-real-8.jpg"
+                  src="/images/779277441_28280400428319935_8371569718575634018_n.jpg"
                   alt="Site Quality and Craftsmanship"
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

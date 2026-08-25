@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface LoaderProps {
@@ -11,14 +11,14 @@ export default function Loader({ onComplete }: LoaderProps) {
   const [phase, setPhase] = useState<'video' | 'reveal' | 'done'>('video')
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  const handleFinish = React.useCallback(() => {
+  const handleFinish = () => {
     if (phase !== 'video') return
     setPhase('reveal')
     setTimeout(() => {
       setPhase('done')
       onComplete()
     }, 850)
-  }, [phase, onComplete])
+  }
 
   useEffect(() => {
     const video = videoRef.current

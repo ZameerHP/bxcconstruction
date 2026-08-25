@@ -44,7 +44,7 @@ export default function About() {
             <div className="lg:col-span-5">
               <div className="group relative aspect-[4/3] rounded-card-lg overflow-hidden border border-bxc-border-light shadow-xl">
                 <Image
-                  src="/images/user-real-2.jpg"
+                  src="/images/project-hillcrest.jpg"
                   alt="About BXC Construction Real Build"
                   fill
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"

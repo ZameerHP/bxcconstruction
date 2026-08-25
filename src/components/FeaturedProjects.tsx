@@ -15,7 +15,7 @@ const projects = [
     category: 'Custom Home Build',
     location: 'Toronto, ON',
     year: '2024',
-    image: '/images/user-real-2.jpg',
+    image: '/images/project-hillcrest.jpg',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const projects = [
     category: 'Commercial Build',
     location: 'GTA, ON',
     year: '2024',
-    image: '/images/user-real-5.jpg',
+    image: '/images/capability-engineering.jpg',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const projects = [
     category: 'Exterior & Cladding',
     location: 'Vaughan, ON',
     year: '2024',
-    image: '/images/user-real-7.jpg',
+    image: '/images/service-renovation.jpg',
   },
 ]
 

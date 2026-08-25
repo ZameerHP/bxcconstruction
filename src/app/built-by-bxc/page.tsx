@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -38,7 +38,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Custom Modern Architectural Estate',
     category: 'Residential',
     type: 'image',
-    src: '/images/user-real-2.jpg',
+    src: '/images/project-hillcrest.jpg',
     location: 'Toronto, ON',
     year: '2024',
     description: 'Ground-up custom luxury residential build featuring bespoke slatted wood envelope, architectural glazing, and structural precision.',
@@ -58,7 +58,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Commercial Facility Structural Framing',
     category: 'Commercial',
     type: 'image',
-    src: '/images/user-real-5.jpg',
+    src: '/images/capability-engineering.jpg',
     location: 'Vaughan, ON',
     year: '2024',
     description: 'Large-scale commercial structural steel framing, mechanical ducting integration, and high-load partition engineering.',
@@ -78,7 +78,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Modern Exterior Cladding & Envelope',
     category: 'Renovations',
     type: 'image',
-    src: '/images/user-real-7.jpg',
+    src: '/images/service-renovation.jpg',
     location: 'Toronto, ON',
     year: '2024',
     description: 'Architectural composite cladding, high-performance exterior envelope, and structural exterior renovations.',
@@ -98,7 +98,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Ground-Up Concrete & Foundation Engineering',
     category: 'Structural',
     type: 'image',
-    src: '/images/user-real-1.jpg',
+    src: '/images/project-alden.jpg',
     location: 'Yorkville, ON',
     year: '2024',
     description: 'Deep foundation pours, waterproof subterranean membranes, and engineered grade beams.',
@@ -108,7 +108,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Precision Exterior Envelope Assembly',
     category: 'Structural',
     type: 'video',
-    src: '/images/video-masonry-1.mov',
+    src: '/images/b185447f5f274e15afb3cabd6631fed1_2.MOV',
     location: 'Toronto, ON',
     year: '2024',
     description: 'Thermal-break insulation layers and rainscreen assembly for extreme weather durability.',
@@ -118,7 +118,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Luxury Interior Renovation & Structural Openings',
     category: 'Renovations',
     type: 'image',
-    src: '/images/user-real-3.jpg',
+    src: '/images/project-meridian.jpg',
     location: 'Bridle Path, ON',
     year: '2024',
     description: 'Structural retrofit replacing load-bearing masonry with concealed steel flitch plates for expansive glass walls.',
@@ -128,7 +128,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Luxury Residential Structural Steel & Glass',
     category: 'Residential',
     type: 'video',
-    src: '/images/video-masonry-2.mov',
+    src: '/images/f157eafa718b47099adf329508b0581d_2.MOV',
     location: 'North York, ON',
     year: '2024',
     description: 'High-tolerance steel beam assembly creating dramatic floor-to-ceiling glass openings.',
@@ -138,7 +138,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Modern Commercial Office & Tenant Fitout',
     category: 'Commercial',
     type: 'image',
-    src: '/images/user-real-4.jpg',
+    src: '/images/capability-architecture.jpg',
     location: 'Downtown Toronto, ON',
     year: '2024',
     description: 'Class-A commercial buildout featuring acoustic dampening baffles, architectural glass partitions, and executive suites.',
@@ -158,7 +158,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Structural Steel Framing & Skylight Engineering',
     category: 'Structural',
     type: 'image',
-    src: '/images/user-real-6.jpg',
+    src: '/images/service-residential.jpg',
     location: 'Richmond Hill, ON',
     year: '2024',
     description: 'Monumental steel atrium framework supporting insulated triple-pane architectural skylights.',
@@ -168,7 +168,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Commercial Partition Walls & Ceiling Grid',
     category: 'Commercial',
     type: 'image',
-    src: '/images/user-real-8.jpg',
+    src: '/images/779277441_28280400428319935_8371569718575634018_n.jpg',
     location: 'Markham, ON',
     year: '2024',
     description: 'Heavy-gauge steel stud partition walls and integrated fire-rated assemblies.',
@@ -248,7 +248,7 @@ const allMediaItems: GalleryItem[] = [
     title: 'Commercial Plaza & Retail Development',
     category: 'Commercial',
     type: 'image',
-    src: '/images/service-commercial.jpg',
+    src: '/images/project-meridian.jpg',
     location: 'Mississauga, ON',
     year: '2024',
     description: 'Multi-tenant commercial retail complex completed on an aggressive schedule with zero defect handover.',
@@ -328,19 +328,19 @@ export default function BuiltByBXCPage() {
     setSelectedItem(item)
   }
 
-  const nextLightbox = React.useCallback(() => {
+  const nextLightbox = () => {
     if (!filteredItems.length) return
     const nextIdx = (lightboxIndex + 1) % filteredItems.length
     setLightboxIndex(nextIdx)
     setSelectedItem(filteredItems[nextIdx])
-  }, [filteredItems, lightboxIndex])
+  }
 
-  const prevLightbox = React.useCallback(() => {
+  const prevLightbox = () => {
     if (!filteredItems.length) return
     const prevIdx = (lightboxIndex - 1 + filteredItems.length) % filteredItems.length
     setLightboxIndex(prevIdx)
     setSelectedItem(filteredItems[prevIdx])
-  }, [filteredItems, lightboxIndex])
+  }
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

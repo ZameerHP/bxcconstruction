@@ -10,13 +10,13 @@ export default function Capabilities() {
       phase: 'PHASE 01 · STRUCTURAL & FOUNDATION',
       title: 'Precision Structural & Concrete Engineering',
       desc: 'Formwork, foundation slabs, structural steel framing, and commercial partition systems built to microscopic tolerances.',
-      image: '/images/user-real-4.jpg',
+      image: '/images/capability-architecture.jpg',
     },
     {
       phase: 'PHASE 02 · ARCHITECTURAL ENVELOPE',
       title: 'Bespoke Architectural Delivery',
       desc: 'Modern composite and slatted wood cladding, exterior envelopes, and zero-tolerance residential & commercial finishing.',
-      image: '/images/user-real-2.jpg',
+      image: '/images/project-hillcrest.jpg',
     },
   ]
 

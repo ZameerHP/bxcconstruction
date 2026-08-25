@@ -30,7 +30,10 @@ import MarqueeText from '@/components/MarqueeText'
 let hasPlayedIntro = false;
 
 export default function Home() {
-  const [loading, setLoading] = useState(!hasPlayedIntro)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    if (hasPlayedIntro) setLoading(false)
+  }, [])
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
