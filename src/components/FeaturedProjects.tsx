@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import ScrollReveal from '@/components/ScrollReveal'
@@ -61,7 +62,7 @@ export default function FeaturedProjects() {
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <span className="w-6 h-[1px] bg-bxc-accent" />
+                <span className="w-6 h-[1.5px] bg-bxc-accent" />
                 <span className="text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent">
                   OUR PORTFOLIO
                 </span>
@@ -70,9 +71,18 @@ export default function FeaturedProjects() {
                 Selected Landmark Builds
               </h2>
             </div>
-            <p className="text-bxc-bg/70 text-sm md:text-base max-w-md">
-              A showcase of actual BXC Construction projects executed across residential and commercial sectors.
-            </p>
+            <div className="flex flex-col md:items-end gap-3">
+              <p className="text-bxc-bg/70 text-sm md:text-base max-w-md">
+                A showcase of actual BXC Construction projects executed across residential and commercial sectors.
+              </p>
+              <Link
+                href="/built-by-bxc"
+                className="inline-flex items-center gap-2 text-bxc-accent hover:text-white text-xs font-bold uppercase tracking-wider transition-colors duration-200"
+              >
+                <span>View Full Showcase Gallery</span>
+                <span>→</span>
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
 
@@ -117,52 +127,69 @@ export default function FeaturedProjects() {
                         {project.description}
                       </p>
 
-                      <a
-                        href="#contact"
-                        className="inline-flex items-center gap-2 text-bxc-accent text-xs font-bold uppercase tracking-wider hover:text-white transition-colors duration-200"
-                      >
-                        <span>Request Similar Project Brief</span>
-                        <span>→</span>
-                      </a>
+                      <div className="flex items-center gap-6">
+                        <Link
+                          href="/built-by-bxc"
+                          className="btn-bronze rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider inline-flex items-center gap-2 shadow-lg"
+                        >
+                          <span>Explore Project Media</span>
+                          <span>→</span>
+                        </Link>
+                        <a
+                          href="#contact"
+                          className="text-xs font-bold uppercase tracking-wider text-bxc-bg/80 hover:text-bxc-accent transition-colors"
+                        >
+                          Request Brief
+                        </a>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Slider Nav Buttons */}
+            {/* Slider Nav Buttons with Scale-Pulse Feedback */}
             <div className="absolute top-6 right-6 hidden md:flex items-center gap-2 z-20">
               <button
                 onClick={() => emblaApi?.scrollPrev()}
                 aria-label="Previous project"
-                className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-bxc-accent hover:border-bxc-accent transition-colors"
+                className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-bxc-accent hover:border-bxc-accent active:scale-90 transition-all duration-200"
               >
                 ←
               </button>
               <button
                 onClick={() => emblaApi?.scrollNext()}
                 aria-label="Next project"
-                className="w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-bxc-accent hover:border-bxc-accent transition-colors"
+                className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-bxc-accent hover:border-bxc-accent active:scale-90 transition-all duration-200"
               >
                 →
               </button>
             </div>
           </div>
 
-          {/* Pagination Indicators */}
-          <div className="flex justify-center items-center mt-8 gap-2.5">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => emblaApi?.scrollTo(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  index === selectedIndex
-                    ? 'w-8 bg-bxc-accent shadow-glow'
-                    : 'w-2 bg-white/20 hover:bg-white/40'
-                }`}
-              />
-            ))}
+          {/* Pagination Indicators & Gallery CTA */}
+          <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4">
+            <div className="flex items-center gap-2.5">
+              {projects.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => emblaApi?.scrollTo(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    index === selectedIndex
+                      ? 'w-8 bg-bxc-accent shadow-glow'
+                      : 'w-2 bg-white/20 hover:bg-white/40'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <Link
+              href="/built-by-bxc"
+              className="btn-outline-bronze rounded-full px-6 py-2 text-xs font-semibold uppercase tracking-wider"
+            >
+              All Project Photos & Videos ({12}) →
+            </Link>
           </div>
         </ScrollReveal>
       </div>

@@ -33,6 +33,38 @@
 }
 
 /* ==============================
+   Layered Depth & Shadow System
+   ============================== */
+.shadow-premium {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04), 0 14px 30px -4px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-premium-hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06), 0 24px 48px -6px rgba(0, 0, 0, 0.14);
+}
+
+.shadow-card-dark {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.shadow-card-dark-hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(176, 141, 87, 0.4);
+}
+
+/* Premium Card Tactile Lift + Shadow Bloom */
+.card-premium {
+  @apply shadow-premium transition-all duration-300 ease-out;
+  transform: translateZ(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-premium:hover {
+    transform: translateY(-6px) scale(1.015) translateZ(0);
+    @apply shadow-premium-hover;
+  }
+}
+
+/* ==============================
    Custom Scrollbar
    ============================== */
 ::-webkit-scrollbar {
@@ -53,16 +85,16 @@
    Fast Hardware-Accelerated Glassmorphism
    ============================== */
 .glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transform: translateZ(0);
 }
 
 .glass-dark {
-  background: rgba(17, 20, 19, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(17, 20, 19, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transform: translateZ(0);
 }
 
@@ -77,77 +109,33 @@
 }
 
 /* ==============================
-   Animated Gradient Border
-   ============================== */
-.gradient-border {
-  position: relative;
-  background: transparent;
-}
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 1.5px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, #B08D57 0%, transparent 40%, transparent 60%, #B08D57 100%);
-  background-size: 300% 300%;
-  animation: gradientX 4s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-}
-
-/* ==============================
-   Shimmer / Shine Sweep
-   ============================== */
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-.shimmer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.15) 45%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0.15) 55%,
-    transparent 60%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-/* ==============================
-   Navbar link underline
+   Center-Out Navbar Link Underline
    ============================== */
 .nav-link {
   position: relative;
+  display: inline-block;
 }
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: -2px;
   left: 50%;
-  right: 50%;
+  width: 0;
   height: 1.5px;
-  background: linear-gradient(90deg, transparent, #B08D57, transparent);
-  transition: left 0.25s ease-out, right 0.25s ease-out;
+  background: #B08D57;
+  transition: width 0.25s ease-out, left 0.25s ease-out;
+  transform: translateX(-50%);
 }
 .nav-link:hover::after {
-  left: 0;
-  right: 0;
+  width: 100%;
+  left: 50%;
 }
 
 /* ==============================
    FAQ Accordion
    ============================== */
 .faq-icon {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .faq-icon.open {
   transform: rotate(45deg);
@@ -178,7 +166,7 @@
   @apply bg-bxc-accent text-bxc-bg font-medium;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
   transform: translateZ(0);
 }
@@ -186,21 +174,20 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  background: rgba(0, 0, 0, 0.12);
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.2s ease;
   z-index: -1;
 }
 .btn-bronze:hover {
-  @apply bg-bxc-accent-hover;
   transform: translateY(-2px) translateZ(0);
-  box-shadow: 0 8px 20px -5px rgba(176, 141, 87, 0.4);
+  box-shadow: 0 8px 24px -4px rgba(176, 141, 87, 0.45);
 }
 .btn-bronze:hover::before {
   opacity: 1;
 }
 .btn-bronze:active {
-  transform: translateY(0) translateZ(0);
+  transform: translateY(0) scale(0.98) translateZ(0);
 }
 
 .btn-outline-bronze {
@@ -208,43 +195,28 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
 }
 .btn-outline-bronze::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #B08D57 0%, #c9a36a 50%, #B08D57 100%);
+  background: #B08D57;
   transform: translateX(-101%);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: -1;
 }
 .btn-outline-bronze:hover::before {
   transform: translateX(0);
 }
 .btn-outline-bronze:hover {
-  @apply text-bxc-bg;
+  @apply text-bxc-bg border-bxc-accent;
   transform: translateY(-2px) translateZ(0);
-  box-shadow: 0 8px 20px -5px rgba(176, 141, 87, 0.3);
+  box-shadow: 0 8px 20px -5px rgba(176, 141, 87, 0.35);
 }
 .btn-outline-bronze:active {
-  transform: translateY(0) translateZ(0);
-}
-
-/* ==============================
-   3D Card Tilt on Hover
-   ============================== */
-.card-3d {
-  perspective: 1000px;
-}
-.card-3d-inner {
-  transition: transform 0.35s ease-out;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-.card-3d:hover .card-3d-inner {
-  transform: translateY(-4px) translateZ(10px);
+  transform: translateY(0) scale(0.98) translateZ(0);
 }
 
 /* ==============================
@@ -259,15 +231,6 @@
   white-space: nowrap;
   animation: marquee 35s linear infinite;
   will-change: transform;
-}
-
-/* ==============================
-   Touch device overrides
-   ============================== */
-@media (hover: none) and (pointer: coarse) {
-  .card-3d:hover .card-3d-inner {
-    transform: none;
-  }
 }
 
 /* ==============================

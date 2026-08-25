@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Logo from '@/components/Logo'
 import MagneticButton from '@/components/MagneticButton'
@@ -10,6 +11,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const pathname = usePathname()
 
   useEffect(() => {
     let ticking = false
@@ -19,14 +21,16 @@ export default function Navbar() {
         window.requestAnimationFrame(() => {
           setScrolled(window.scrollY > 30)
 
-          const sections = ['services', 'projects', 'process', 'quality', 'contact']
-          for (const sectionId of sections) {
-            const el = document.getElementById(sectionId)
-            if (el) {
-              const rect = el.getBoundingClientRect()
-              if (rect.top <= 250 && rect.bottom >= 250) {
-                setActiveSection(sectionId)
-                break
+          if (pathname === '/') {
+            const sections = ['services', 'projects', 'process', 'why-bxc', 'quality', 'contact']
+            for (const sectionId of sections) {
+              const el = document.getElementById(sectionId)
+              if (el) {
+                const rect = el.getBoundingClientRect()
+                if (rect.top <= 250 && rect.bottom >= 250) {
+                  setActiveSection(sectionId)
+                  break
+                }
               }
             }
           }
@@ -38,14 +42,15 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [pathname])
 
   const navLinks = [
-    { name: 'Services', href: '#services', id: 'services' },
-    { name: 'Projects', href: '#projects', id: 'projects' },
-    { name: 'Process', href: '#process', id: 'process' },
-    { name: 'Standards', href: '#quality', id: 'quality' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
+    { name: 'Services', href: '/#services', id: 'services' },
+    { name: 'Projects', href: '/#projects', id: 'projects' },
+    { name: 'Built By BXC', href: '/built-by-bxc', id: 'built-by-bxc' },
+    { name: 'Process', href: '/#process', id: 'process' },
+    { name: 'Standards', href: '/#quality', id: 'quality' },
+    { name: 'Contact', href: '/#contact', id: 'contact' },
   ]
 
   return (
@@ -53,27 +58,29 @@ export default function Navbar() {
       {/* Centered Top Fixed Ultra-Slim Navbar */}
       <header className="fixed top-3 left-0 right-0 z-50 flex justify-center items-center px-3 pointer-events-none">
         <div
-          className={`pointer-events-auto flex items-center justify-between transition-all duration-300 w-full max-w-3xl px-3.5 md:px-5 py-1 rounded-full ${
+          className={`pointer-events-auto flex items-center justify-between transition-all duration-300 w-full max-w-4xl px-4 md:px-6 py-1.5 rounded-full ${
             scrolled
-              ? 'bg-white/95 backdrop-blur-md shadow-md shadow-black/5 border border-bxc-border-light/70'
-              : 'bg-white/85 backdrop-blur-md shadow-sm shadow-black/[0.03] border border-white/60'
+              ? 'bg-white/95 backdrop-blur-md shadow-premium border border-bxc-border-light/80'
+              : 'bg-white/85 backdrop-blur-md shadow-sm border border-white/60'
           }`}
         >
           {/* Small crisp logo */}
-          <Link href="/" className="inline-flex items-center focus:outline-none shrink-0 pr-2">
+          <Link href="/" className="inline-flex items-center focus:outline-none shrink-0 pr-3">
             <Logo navbar />
           </Link>
 
-          {/* Centered Slim Nav Links */}
+          {/* Centered Slim Nav Links with Center-Out Underline */}
           <nav className="hidden md:flex items-center gap-5 lg:gap-7 mx-auto">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id
+              const isCurrentPage = pathname === link.href || (link.id === 'built-by-bxc' && pathname === '/built-by-bxc')
+              const isActive = isCurrentPage || (pathname === '/' && activeSection === link.id)
+
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative text-[11px] font-semibold uppercase tracking-wider py-0.5 transition-colors duration-200 ${
-                    isActive ? 'text-bxc-accent' : 'text-bxc-text/70 hover:text-bxc-text'
+                  className={`nav-link relative text-[11px] font-semibold uppercase tracking-wider py-0.5 transition-colors duration-200 ${
+                    isActive ? 'text-bxc-accent font-bold' : 'text-bxc-text/75 hover:text-bxc-text'
                   }`}
                 >
                   {link.name}
@@ -89,12 +96,12 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right Action CTA */}
-          <div className="hidden md:flex items-center pl-2 shrink-0">
+          {/* Right Magnetic Action CTA */}
+          <div className="hidden md:flex items-center pl-3 shrink-0">
             <MagneticButton
-              href="#contact"
+              href="/#contact"
               variant="primary"
-              className="px-3.5 py-1 text-[10px] font-semibold uppercase tracking-wider !rounded-full shadow-sm hover:shadow"
+              className="px-4 py-1.5 text-[10.5px] font-semibold uppercase tracking-wider !rounded-full shadow-sm hover:shadow"
             >
               Get a Quote
             </MagneticButton>
@@ -102,30 +109,30 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="md:hidden flex flex-col justify-center items-center w-7 h-7 space-y-1 z-50 relative focus:outline-none"
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-50 relative focus:outline-none"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
             <span
-              className={`block w-3.5 h-[1.5px] transition-transform duration-300 ${
-                mobileMenuOpen ? 'rotate-45 translate-y-[4.5px] bg-bxc-bg' : 'bg-bxc-text'
+              className={`block w-4 h-[1.5px] transition-transform duration-300 ${
+                mobileMenuOpen ? 'rotate-45 translate-y-[6px] bg-bxc-bg' : 'bg-bxc-text'
               }`}
             />
             <span
-              className={`block w-3.5 h-[1.5px] transition-opacity duration-300 ${
+              className={`block w-4 h-[1.5px] transition-opacity duration-300 ${
                 mobileMenuOpen ? 'opacity-0 bg-bxc-bg' : 'opacity-100 bg-bxc-text'
               }`}
             />
             <span
-              className={`block w-3.5 h-[1.5px] transition-transform duration-300 ${
-                mobileMenuOpen ? '-rotate-45 -translate-y-[4.5px] bg-bxc-bg' : 'bg-bxc-text'
+              className={`block w-4 h-[1.5px] transition-transform duration-300 ${
+                mobileMenuOpen ? '-rotate-45 -translate-y-[6px] bg-bxc-bg' : 'bg-bxc-text'
               }`}
             />
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Fullscreen Dark Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -164,7 +171,7 @@ export default function Navbar() {
                 className="mt-6"
               >
                 <a
-                  href="#contact"
+                  href="/#contact"
                   className="btn-bronze rounded-full px-7 py-3 text-xs uppercase tracking-wider font-semibold inline-block shadow-lg"
                   onClick={() => setMobileMenuOpen(false)}
                 >
