@@ -17,7 +17,7 @@ export default function Loader({ onComplete }: LoaderProps) {
     setTimeout(() => {
       setPhase('done')
       onComplete()
-    }, 1100)
+    }, 1150)
   }
 
   useEffect(() => {
@@ -35,11 +35,10 @@ export default function Loader({ onComplete }: LoaderProps) {
 
     video.addEventListener('ended', handleEnded)
 
-    // Attempt video playback
+    // Smooth autoplay attempt
     const playPromise = video.play()
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        // If autoplay blocked, graceful timeout
         setTimeout(() => {
           handleFinish()
         }, 2500)
@@ -55,50 +54,47 @@ export default function Loader({ onComplete }: LoaderProps) {
   if (phase === 'done') return null
 
   return (
-    <div className="fixed inset-0 z-[100] pointer-events-auto select-none">
+    <div className="fixed inset-0 z-[100] pointer-events-auto select-none overflow-hidden">
       <AnimatePresence mode="wait">
         {phase === 'video' && (
           <motion.div
             key="video-wrapper"
-            exit={{ opacity: 0, scale: 0.94, filter: 'blur(10px)' }}
-            transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#d6d6d6] overflow-hidden px-4"
+            exit={{ opacity: 0, scale: 0.97, filter: 'blur(6px)' }}
+            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#d6d6d6] px-4"
           >
-            {/* Ambient luxury glow */}
-            <div className="absolute w-[500px] h-[500px] rounded-full bg-[#B08D57]/15 blur-[100px] pointer-events-none" />
-
-            {/* Video container with perfect 300-380px compact size */}
+            {/* Ultra-clean Video container - NO shadows, NO borders */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 15 }}
+              initial={{ opacity: 0, scale: 0.94, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 w-full max-w-[360px] sm:max-w-[400px] aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl shadow-black/15 border border-black/10 bg-[#d6d6d6]"
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 w-full max-w-[340px] sm:max-w-[390px] aspect-[16/10] rounded-2xl overflow-hidden bg-[#d6d6d6]"
             >
               <video
                 ref={videoRef}
                 muted
                 playsInline
                 preload="auto"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-2xl"
               >
                 <source src="/images/intro.mp4" type="video/mp4" />
               </video>
             </motion.div>
 
-            {/* Subtle Brand Tag & Skip Button */}
+            {/* Clean, minimal controls */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="relative z-10 mt-6 flex items-center gap-6"
             >
-              <span className="text-[10px] uppercase font-semibold tracking-[0.25em] text-bxc-text/60">
+              <span className="text-[10px] uppercase font-medium tracking-[0.28em] text-bxc-text/50">
                 BXC CONSTRUCTION
               </span>
 
               <button
                 onClick={handleFinish}
-                className="text-[11px] font-semibold uppercase tracking-wider text-bxc-accent hover:text-bxc-text transition-colors duration-200 cursor-pointer"
+                className="text-[11px] font-semibold uppercase tracking-wider text-bxc-accent hover:text-bxc-text transition-colors duration-300 cursor-pointer"
               >
                 Skip Intro →
               </button>
@@ -107,31 +103,31 @@ export default function Loader({ onComplete }: LoaderProps) {
         )}
       </AnimatePresence>
 
-      {/* Split-Curtain Opening Reveal */}
+      {/* Pro Max Smooth Split-Curtain Opening Reveal */}
       {phase === 'reveal' && (
         <div className="absolute inset-0 z-30 pointer-events-none overflow-hidden">
           {/* Left curtain */}
           <motion.div
-            className="absolute top-0 left-0 w-1/2 h-full bg-[#d6d6d6] shadow-[10px_0_30px_rgba(0,0,0,0.08)]"
+            className="absolute top-0 left-0 w-1/2 h-full bg-[#d6d6d6]"
             initial={{ x: 0 }}
             animate={{ x: '-100%' }}
-            transition={{ duration: 1.0, ease: [0.83, 0, 0.17, 1] }}
+            transition={{ duration: 1.05, ease: [0.76, 0, 0.24, 1] }}
           />
 
           {/* Right curtain */}
           <motion.div
-            className="absolute top-0 right-0 w-1/2 h-full bg-[#d6d6d6] shadow-[-10px_0_30px_rgba(0,0,0,0.08)]"
+            className="absolute top-0 right-0 w-1/2 h-full bg-[#d6d6d6]"
             initial={{ x: 0 }}
             animate={{ x: '100%' }}
-            transition={{ duration: 1.0, ease: [0.83, 0, 0.17, 1] }}
+            transition={{ duration: 1.05, ease: [0.76, 0, 0.24, 1] }}
           />
 
-          {/* Golden Center Accent Line */}
+          {/* Elegant Center Golden Seam */}
           <motion.div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-[1.5px] h-full bg-gradient-to-b from-transparent via-[#B08D57] to-transparent"
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-[#B08D57]/70 to-transparent"
             initial={{ scaleY: 1, opacity: 0.8 }}
             animate={{ scaleY: 0, opacity: 0 }}
-            transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           />
         </div>
       )}

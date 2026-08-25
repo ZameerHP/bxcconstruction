@@ -6,7 +6,6 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import About from '@/components/About'
 import WhyBXC from '@/components/WhyBXC'
-import ProblemSection from '@/components/ProblemSection'
 import Capabilities from '@/components/Capabilities'
 import Services from '@/components/Services'
 import Process from '@/components/Process'
@@ -62,7 +61,6 @@ export default function Home() {
 
               <About />
               <WhyBXC />
-              <ProblemSection />
               <Capabilities />
               <Services />
 
