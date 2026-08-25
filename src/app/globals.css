@@ -1,0 +1,296 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-bxc-bg text-bxc-text;
+    overflow-x: hidden;
+  }
+
+  /* GPU-accelerated smooth rendering for all elements */
+  *, *::before, *::after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img, video {
+    max-width: 100%;
+    transform: translateZ(0);
+  }
+
+  ::selection {
+    background-color: #B08D57;
+    color: #F7F6F3;
+  }
+}
+
+/* ==============================
+   Custom Scrollbar
+   ============================== */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #111413;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #B08D57 0%, #9A7847 100%);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #c9a36a 0%, #B08D57 100%);
+}
+
+/* ==============================
+   Fast Hardware-Accelerated Glassmorphism
+   ============================== */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform: translateZ(0);
+}
+
+.glass-dark {
+  background: rgba(17, 20, 19, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transform: translateZ(0);
+}
+
+/* ==============================
+   Smooth GPU Performance Acceleration
+   ============================== */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* ==============================
+   Animated Gradient Border
+   ============================== */
+.gradient-border {
+  position: relative;
+  background: transparent;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #B08D57 0%, transparent 40%, transparent 60%, #B08D57 100%);
+  background-size: 300% 300%;
+  animation: gradientX 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ==============================
+   Shimmer / Shine Sweep
+   ============================== */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.15) 45%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.15) 55%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ==============================
+   Navbar link underline
+   ============================== */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  right: 50%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #B08D57, transparent);
+  transition: left 0.25s ease-out, right 0.25s ease-out;
+}
+.nav-link:hover::after {
+  left: 0;
+  right: 0;
+}
+
+/* ==============================
+   FAQ Accordion
+   ============================== */
+.faq-icon {
+  transition: transform 0.3s ease;
+}
+.faq-icon.open {
+  transform: rotate(45deg);
+}
+
+/* ==============================
+   Process timeline line draw
+   ============================== */
+.process-line {
+  transform-origin: left center;
+}
+
+/* ==============================
+   Image clip-path reveal
+   ============================== */
+.clip-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.clip-reveal.revealed {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ==============================
+   Premium Button Styles
+   ============================== */
+.btn-bronze {
+  @apply bg-bxc-accent text-bxc-bg font-medium;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+  transform: translateZ(0);
+}
+.btn-bronze::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: -1;
+}
+.btn-bronze:hover {
+  @apply bg-bxc-accent-hover;
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 8px 20px -5px rgba(176, 141, 87, 0.4);
+}
+.btn-bronze:hover::before {
+  opacity: 1;
+}
+.btn-bronze:active {
+  transform: translateY(0) translateZ(0);
+}
+
+.btn-outline-bronze {
+  @apply border border-bxc-accent text-bxc-accent font-medium;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+}
+.btn-outline-bronze::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #B08D57 0%, #c9a36a 50%, #B08D57 100%);
+  transform: translateX(-101%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+.btn-outline-bronze:hover::before {
+  transform: translateX(0);
+}
+.btn-outline-bronze:hover {
+  @apply text-bxc-bg;
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 8px 20px -5px rgba(176, 141, 87, 0.3);
+}
+.btn-outline-bronze:active {
+  transform: translateY(0) translateZ(0);
+}
+
+/* ==============================
+   3D Card Tilt on Hover
+   ============================== */
+.card-3d {
+  perspective: 1000px;
+}
+.card-3d-inner {
+  transition: transform 0.35s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.card-3d:hover .card-3d-inner {
+  transform: translateY(-4px) translateZ(10px);
+}
+
+/* ==============================
+   Marquee
+   ============================== */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+/* ==============================
+   Touch device overrides
+   ============================== */
+@media (hover: none) and (pointer: coarse) {
+  .card-3d:hover .card-3d-inner {
+    transform: none;
+  }
+}
+
+/* ==============================
+   Smooth scroll override for Lenis
+   ============================== */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ==============================
+   Focus Styles
+   ============================== */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #B08D57 !important;
+  box-shadow: 0 0 0 2px rgba(176, 141, 87, 0.2) !important;
+}
