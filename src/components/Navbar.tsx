@@ -50,7 +50,7 @@ export default function Navbar() {
     { name: 'Built By BXC', href: '/built-by-bxc', id: 'built-by-bxc' },
     { name: 'Process', href: '/#process', id: 'process' },
     { name: 'Standards', href: '/#quality', id: 'quality' },
-    { name: 'Contact', href: '/#contact', id: 'contact' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
   ]
 
   return (
@@ -99,7 +99,7 @@ export default function Navbar() {
           {/* Right Magnetic Action CTA */}
           <div className="hidden md:flex items-center pl-3 shrink-0">
             <MagneticButton
-              href="/#contact"
+              href="#contact"
               variant="primary"
               className="px-4 py-1.5 text-[10.5px] font-semibold uppercase tracking-wider !rounded-full shadow-sm hover:shadow"
             >
@@ -137,12 +137,23 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, clipPath: 'circle(0% at 90% 40px)' }}
-            animate={{ opacity: 1, clipPath: 'circle(150% at 90% 40px)' }}
-            exit={{ opacity: 0, clipPath: 'circle(0% at 90% 40px)' }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-bxc-dark/98 backdrop-blur-xl flex flex-col items-center justify-center p-6 text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="fixed inset-0 z-[60] bg-bxc-dark/98 backdrop-blur-xl flex flex-col items-center justify-center p-6 text-center"
           >
+            {/* Close Button */}
+            <button
+              className="absolute top-6 right-6 p-2 text-white/70 hover:text-white focus:outline-none transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
             <div className="mb-8">
               <Logo dark />
             </div>
@@ -157,7 +168,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className="text-2xl font-light tracking-tight text-bxc-bg/90 hover:text-bxc-accent transition-colors"
+                    className="text-2xl font-light tracking-tight text-white hover:text-bxc-accent transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}
@@ -172,7 +183,7 @@ export default function Navbar() {
                 className="mt-6"
               >
                 <Link
-                  href="/#contact"
+                  href="#contact"
                   className="btn-bronze rounded-full px-7 py-3 text-xs uppercase tracking-wider font-semibold inline-block shadow-lg"
                   onClick={() => setMobileMenuOpen(false)}
                 >

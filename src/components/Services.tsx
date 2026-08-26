@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/ScrollReveal'
 
 function ServiceIcon({ type }: { type: string }) {
@@ -42,63 +43,63 @@ export default function Services() {
     {
       title: 'Custom Homes',
       description: 'Complete custom home construction from foundation to finishing.',
-      image: '/images/project-hillcrest.jpg',
+      image: '/images/779842222_1387430090205108_5799004801655720140_n.jpg',
       icon: 'house',
       tag: 'RESIDENTIAL',
     },
     {
       title: 'Residential Construction',
       description: 'New builds, additions, structural work and complete home projects.',
-      image: '/images/service-renovation.jpg',
+      image: '/images/780086540_1760565428525052_4152121409823587029_n.jpg',
       icon: 'building',
       tag: 'NEW BUILDS',
     },
     {
       title: 'Commercial Construction',
       description: 'Construction and renovation for offices, retail and commercial spaces.',
-      image: '/images/project-alden.jpg',
+      image: '/images/780443235_1739838417323113_2356242721593559861_n.jpg',
       icon: 'tower',
       tag: 'COMMERCIAL',
     },
     {
       title: 'Home Renovations',
       description: 'Full renovations, basement finishing, kitchens and bathrooms.',
-      image: '/images/project-meridian.jpg',
+      image: '/images/782144319_925739119992036_1634993976219471516_n.jpg',
       icon: 'hammer',
       tag: 'RENOVATION',
     },
     {
       title: 'Framing & Drywall',
       description: 'Structural framing, interior walls, drywall, taping and finishing.',
-      image: '/images/779277441_28280400428319935_8371569718575634018_n.jpg',
+      image: '/images/782876125_907950201938571_8201646372247002772_n.jpg',
       icon: 'wall',
       tag: 'STRUCTURAL',
     },
     {
       title: 'Flooring & Tile',
       description: 'Hardwood, laminate, vinyl, engineered flooring and tile installation.',
-      image: '/images/project-meridian.jpg',
+      image: '/images/783374092_964415036671558_7671081481764060370_n.jpg',
       icon: 'tile',
       tag: 'FINISHES',
     },
     {
       title: 'Concrete & Foundation',
       description: 'Excavation, foundation work, concrete slabs and structural concrete.',
-      image: '/images/capability-architecture.jpg',
+      image: '/images/784249740_977908725320344_6692216013069105814_n.jpg',
       icon: 'foundation',
       tag: 'FOUNDATION',
     },
     {
       title: 'Roofing & Exterior',
       description: 'Roofing, cladding, siding, soffits, decks and fences.',
-      image: '/images/service-renovation.jpg',
+      image: '/images/775335805_1749185182797917_1503259357166593370_n.jpg',
       icon: 'roof',
       tag: 'EXTERIOR',
     },
     {
       title: 'General Contracting',
       description: 'Planning, estimates, scheduling, trade coordination and quality control.',
-      image: '/images/capability-engineering.jpg',
+      image: '/images/776495940_2154523122110609_356760332200612717_n.jpg',
       icon: 'clipboard',
       tag: 'MANAGEMENT',
     },
@@ -132,7 +133,8 @@ export default function Services() {
         >
           {services.map((service, idx) => (
             <StaggerItem key={idx}>
-              <div
+              <Link
+                href="#contact"
                 className="bg-white rounded-card-lg overflow-hidden border border-bxc-border-light group hover:-translate-y-2 hover:shadow-2xl hover:border-bxc-accent/40 transition-all duration-500 flex flex-col h-full cursor-pointer"
                 data-cursor="project"
               >
@@ -176,7 +178,7 @@ export default function Services() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </StaggerItem>
           ))}
         </StaggerContainer>

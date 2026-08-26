@@ -15,7 +15,7 @@ const projects = [
     category: 'Custom Home Build',
     location: 'Toronto, ON',
     year: '2024',
-    image: '/images/project-hillcrest.jpg',
+    image: '/images/779277441_28280400428319935_8371569718575634018_n.jpg',
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const projects = [
     category: 'Commercial Build',
     location: 'GTA, ON',
     year: '2024',
-    image: '/images/capability-engineering.jpg',
+    image: '/images/779842222_1387430090205108_5799004801655720140_n.jpg',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const projects = [
     category: 'Exterior & Cladding',
     location: 'Vaughan, ON',
     year: '2024',
-    image: '/images/service-renovation.jpg',
+    image: '/images/780086540_1760565428525052_4152121409823587029_n.jpg',
   },
 ]
 

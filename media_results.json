@@ -1,0 +1,172 @@
+[
+  {
+    "id": "p1",
+    "title": "Commercial Interior Steel Framing",
+    "category": "Commercial",
+    "type": "image",
+    "src": "/images/775335805_1749185182797917_1503259357166593370_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Floor-to-ceiling light-gauge steel stud framing installation for a commercial interior build-out. The structural partition walls create distinct operational zones while integrating around high open-deck ceilings and overhead ductwork."
+  },
+  {
+    "id": "p2",
+    "title": "Modern Residential Exterior Cladding & Facade Build",
+    "category": "Residential",
+    "type": "image",
+    "src": "/images/776495940_2154523122110609_356760332200612717_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Active exterior construction on a multi-story modern residential home featuring dark vertical cladding, white facade panels, and expansive glass windows. Scaffolding and protective weather barriers are visible as workers complete the exterior finish."
+  },
+  {
+    "id": "p3",
+    "title": "Refined Stairwell Landing & Interior Finishes",
+    "category": "Renovations",
+    "type": "image",
+    "src": "/images/779277441_28280400428319935_8371569718575634018_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "This interior stairwell landing features beadboard wainscoting, updated wood-grain plank flooring, and a metal safety railing set against an octagonal accent window."
+  },
+  {
+    "id": "p4",
+    "title": "Finished Apartment Interior Renovation",
+    "category": "Residential",
+    "type": "image",
+    "src": "/images/779842222_1387430090205108_5799004801655720140_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "A freshly completed living area featuring smooth painted walls, modern ceiling lighting, and wood-grain flooring throughout. The open layout provides access to a renovated bathroom with a new vanity and an adjacent kitchen alcove featuring a stainless steel refrigerator."
+  },
+  {
+    "id": "p5",
+    "title": "Custom Residential Concrete Slab Installation",
+    "category": "Residential",
+    "type": "image",
+    "src": "/images/780086540_1760565428525052_4152121409823587029_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "A freshly poured concrete slab framed with wooden and block formwork along the exterior brick wall of a home. This foundational groundwork creates a solid, level surface along the property's side yard for future exterior living space."
+  },
+  {
+    "id": "p6",
+    "title": "Commercial Interior Metal Stud Framing",
+    "category": "Commercial",
+    "type": "image",
+    "src": "/images/780443235_1739838417323113_2356242721593559861_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Professional installation of floor-to-ceiling metal stud partition framing within an active commercial facility. Construction workers utilize a scissor lift to carefully assemble the structural steel framing around overhead HVAC ductwork and exposed ceiling joists."
+  },
+  {
+    "id": "p7",
+    "title": "Commercial Interior Steel Framing & Buildout",
+    "category": "Commercial",
+    "type": "image",
+    "src": "/images/782144319_925739119992036_1634993976219471516_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Ongoing interior construction of a commercial facility featuring floor-to-ceiling metal stud partition framing, overhead HVAC ductwork, and skylight architecture. The project showcases geometric tiled flooring alongside initial assembly for modular storage units."
+  },
+  {
+    "id": "p8",
+    "title": "Commercial Interior Fit-Out & Layout Framing",
+    "category": "Commercial",
+    "type": "image",
+    "src": "/images/782876125_907950201938571_8201646372247002772_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Metal stud tracks are being laid out on patterned tile flooring to partition new sections within a commercial facility. The elevated view highlights exposed steel ceiling trusses, linear LED fixtures, overhead ductwork, and surrounding partitioned units under active construction."
+  },
+  {
+    "id": "p9",
+    "title": "Modern Exterior Slat Cladding Installation",
+    "category": "Residential",
+    "type": "image",
+    "src": "/images/783374092_964415036671558_7671081481764060370_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Multi-level scaffolding supports the installation of rich vertical wood-look slat cladding along a contemporary home facade. The modern exterior feature is framed by large glass windows and dark architectural panel accents."
+  },
+  {
+    "id": "p10",
+    "title": "Commercial Interior Drywall Installation",
+    "category": "Commercial",
+    "type": "image",
+    "src": "/images/784249740_977908725320344_6692216013069105814_n.jpg",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Full-height drywall panels are systematically installed, taped, and mudded across a large commercial wall using specialized scissor lift equipment. The project phase highlights precision wall assembly and surface preparation in a high-ceiling interior space."
+  },
+  {
+    "id": "v1",
+    "title": "Modern Interior Apartment Renovation",
+    "category": "Renovations",
+    "type": "video",
+    "src": "/images/46b4adafa594455e8961fd5456075a81.MOV",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "This interior unit renovation features updated light wood-plank flooring, crisp white trim, and freshly painted walls. The layout includes an updated kitchen area with stainless steel appliances and installed climate control unit."
+  },
+  {
+    "id": "v2",
+    "title": "Modern Bedroom and Bathroom Interior",
+    "category": "Residential",
+    "type": "video",
+    "src": "/images/64e33862db75405d954110002517698e.MOV",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "This finished residential space features a warm bedroom fitted with custom wood furniture, window drapes, and a mounted display. An adjacent bathroom showcases updated fixtures, light wood-look flooring, and clean interior trim."
+  },
+  {
+    "id": "v3",
+    "title": "Interior Demolition and Slab Removal",
+    "category": "Renovations",
+    "type": "video",
+    "src": "/images/802ab48f11ba49afb610a88b3806018c.MOV",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "An interior space undergoes active demolition, breaking up concrete floor slabs and clearing heavy masonry debris. The exposed subfloor pathways prepare the area for upcoming utility installations and interior remodeling."
+  },
+  {
+    "id": "v4",
+    "title": "Modern Apartment Interior Renovation",
+    "category": "Residential",
+    "type": "video",
+    "src": "/images/8133a6f964624fd887b3e2d578b03920.MOV",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "This interior update features a bright apartment layout complete with light wood-look flooring and clean, freshly painted walls. The space highlights an updated kitchen fitted with contemporary appliances, updated cabinetry, and efficient lighting."
+  },
+  {
+    "id": "v5",
+    "title": "Construction Project Operations",
+    "category": "Structural",
+    "type": "video",
+    "src": "/images/b185447f5f274e15afb3cabd6631fed1_2.MOV",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Active site construction and architectural detailing."
+  },
+  {
+    "id": "v6",
+    "title": "Construction Project Operations",
+    "category": "Structural",
+    "type": "video",
+    "src": "/images/f157eafa718b47099adf329508b0581d_2.MOV",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "Active site construction and architectural detailing."
+  },
+  {
+    "id": "v7",
+    "title": "Residential Bathroom Tub Surround Renovation",
+    "category": "Renovations",
+    "type": "video",
+    "src": "/images/ff6c8c1498fd490e9d98dd90abd8dbc0.MOV",
+    "location": "GTA, ON",
+    "year": "2024",
+    "description": "This completed bathroom update features a smooth white acrylic tub and full-height shower surround installed with polished chrome fixtures. Freshly painted neutral walls and clean baseboard trim complete the modern, low-maintenance space."
+  }
+]
