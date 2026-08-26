@@ -2,19 +2,63 @@
 
 import React, { useState } from 'react'
 import ScrollReveal from '@/components/ScrollReveal'
-import MagneticButton from '@/components/MagneticButton'
 
 export default function FinalCTA() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    location: '',
+    projectType: '',
+    message: '',
+  })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [whatsappLink, setWhatsappLink] = useState('')
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+
+    // Format WhatsApp message with all filled details
+    const whatsappMessage = `*New Consultation Request — BXC Construction*
+
+👤 *Full Name:* ${formData.name.trim()}
+📧 *Email Address:* ${formData.email.trim()}
+📞 *Phone Number:* ${formData.phone.trim() || 'Not provided'}
+📍 *Project Location:* ${formData.location.trim() || 'Not provided'}
+🏗️ *Project Type:* ${formData.projectType || 'General Inquiry'}
+
+📝 *Project Details:*
+${formData.message.trim()}
+
+---
+_Sent via BXC Construction Website Consultation Form_`
+
+    const targetPhone = '14379734229' // 437 973 4229 (Ontario, Canada)
+    const encodedMessage = encodeURIComponent(whatsappMessage)
+    const url = `https://wa.me/${targetPhone}?text=${encodedMessage}`
+
+    setWhatsappLink(url)
+
     setTimeout(() => {
       setLoading(false)
       setSubmitted(true)
-    }, 900)
+
+      // Open WhatsApp automatically in a new window/tab
+      try {
+        window.open(url, '_blank', 'noopener,noreferrer')
+      } catch (err) {
+        console.error('Popup blocked or error opening WhatsApp:', err)
+      }
+    }, 600)
   }
 
   return (
@@ -34,17 +78,17 @@ export default function FinalCTA() {
                 Let’s Build Something Extraordinary
               </h2>
               <p className="text-base text-bxc-bg/75 mb-8 leading-relaxed">
-                Connect with our senior partners to discuss project scope, architectural feasibility, and preliminary timeline estimates.
+                Connect directly with our team to discuss project scope, architectural feasibility, and preliminary timeline estimates.
               </p>
 
               <div className="space-y-4 pt-6 border-t border-white/10 text-xs md:text-sm text-bxc-bg/70">
                 <div className="flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span>Guaranteed response within 1 business day</span>
+                  <span>Instant submission via WhatsApp (+1 437 973-4229)</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full bg-bxc-accent" />
-                  <span>Direct consultation with a Principal Engineer</span>
+                  <span>Direct consultation with a Senior Project Lead</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full bg-bxc-accent" />
@@ -59,14 +103,44 @@ export default function FinalCTA() {
             <ScrollReveal delay={0.15}>
               <div className="bg-bxc-dark-secondary/80 backdrop-blur-xl rounded-card-lg p-8 md:p-10 shadow-2xl border border-white/10">
                 {submitted ? (
-                  <div className="py-12 text-center">
+                  <div className="py-8 text-center">
                     <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto mb-4 text-2xl">
                       ✓
                     </div>
-                    <h3 className="text-2xl font-bold text-bxc-bg mb-2">Consultation Request Received</h3>
-                    <p className="text-sm text-bxc-bg/70 max-w-md mx-auto">
-                      Thank you for contacting BXC Construction. Our senior project executive will review your project brief and reach out within 24 hours.
+                    <h3 className="text-2xl font-bold text-bxc-bg mb-2">Consultation Request Dispatched</h3>
+                    <p className="text-sm text-bxc-bg/70 max-w-md mx-auto mb-6">
+                      Your details have been forwarded to our WhatsApp line at <span className="text-bxc-accent font-semibold">+1 (437) 973-4229</span>. If WhatsApp didn’t open automatically, click the button below to continue.
                     </p>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                      {whatsappLink && (
+                        <a
+                          href={whatsappLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-bronze rounded-full px-6 py-3 text-xs uppercase tracking-widest font-bold shadow-lg inline-flex items-center gap-2"
+                        >
+                          <span>Open in WhatsApp (437 973 4229) →</span>
+                        </a>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSubmitted(false)
+                          setFormData({
+                            name: '',
+                            email: '',
+                            phone: '',
+                            location: '',
+                            projectType: '',
+                            message: '',
+                          })
+                        }}
+                        className="text-xs uppercase tracking-wider text-bxc-bg/60 hover:text-white transition-colors underline py-2"
+                      >
+                        Submit Another Inquiry
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <form className="space-y-5" onSubmit={handleSubmit}>
@@ -81,6 +155,8 @@ export default function FinalCTA() {
                           id="name"
                           name="name"
                           required
+                          value={formData.name}
+                          onChange={handleChange}
                           className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
                           placeholder="Your full name"
                         />
@@ -96,6 +172,8 @@ export default function FinalCTA() {
                           id="email"
                           name="email"
                           required
+                          value={formData.email}
+                          onChange={handleChange}
                           className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
                           placeholder="your@email.com"
                         />
@@ -112,6 +190,8 @@ export default function FinalCTA() {
                           type="tel"
                           id="phone"
                           name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
                           className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
                           placeholder="Your phone number"
                         />
@@ -126,6 +206,8 @@ export default function FinalCTA() {
                           type="text"
                           id="location"
                           name="location"
+                          value={formData.location}
+                          onChange={handleChange}
                           className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
                           placeholder="City, Neighborhood, etc."
                         />
@@ -141,7 +223,8 @@ export default function FinalCTA() {
                         id="projectType"
                         name="projectType"
                         required
-                        defaultValue=""
+                        value={formData.projectType}
+                        onChange={handleChange}
                         className="w-full rounded-xl bg-[#1d201e] border border-white/15 px-4 py-3 text-sm text-bxc-bg focus:outline-none focus:border-bxc-accent transition-all"
                       >
                         <option value="" disabled>Select project type...</option>
@@ -164,6 +247,8 @@ export default function FinalCTA() {
                         name="message"
                         rows={4}
                         required
+                        value={formData.message}
+                        onChange={handleChange}
                         className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all resize-none"
                         placeholder="Tell us briefly about your project..."
                       />
@@ -191,3 +276,4 @@ export default function FinalCTA() {
     </section>
   )
 }
+

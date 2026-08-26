@@ -1,0 +1,6 @@
+{
+  "name": "BXC Construction",
+  "description": "Premium design-build construction firm delivering craftsmanship for luxury residential, commercial, and custom builds.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
