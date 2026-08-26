@@ -144,7 +144,7 @@ export default function Process() {
         </div>
 
         {/* Mobile & Tablet Vertical Connecting Timeline */}
-        <div className="lg:hidden relative ml-3 mt-12">
+        <div className="block lg:hidden relative ml-3 mt-12">
           {/* Static Vertical Line */}
           <div className="absolute top-6 bottom-6 left-6 w-[2px] bg-bxc-border-light z-0" />
 

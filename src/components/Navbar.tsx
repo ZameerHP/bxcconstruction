@@ -14,6 +14,17 @@ export default function Navbar() {
   const pathname = usePathname()
 
   useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
+  useEffect(() => {
     let ticking = false
 
     const handleScroll = () => {
@@ -45,13 +56,30 @@ export default function Navbar() {
   }, [pathname])
 
   const navLinks = [
-    { name: 'Services', href: '/#services', id: 'services' },
-    { name: 'Projects', href: '/#projects', id: 'projects' },
-    { name: 'Built By BXC', href: '/built-by-bxc', id: 'built-by-bxc' },
-    { name: 'Process', href: '/#process', id: 'process' },
-    { name: 'Standards', href: '/#quality', id: 'quality' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
+    { name: 'Services', id: 'services' },
+    { name: 'Projects', id: 'projects' },
+    { name: 'Built By BXC', id: 'built-by-bxc' },
+    { name: 'Process', id: 'process' },
+    { name: 'Standards', id: 'quality' },
+    { name: 'Contact', id: 'contact' },
   ]
+
+  const getHref = (id: string) => {
+    if (id === 'built-by-bxc') return '/built-by-bxc'
+    if (pathname === '/') return `#${id}`
+    return `/#${id}`
+  }
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (id !== 'built-by-bxc' && pathname === '/') {
+      e.preventDefault()
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+        window.history.pushState(null, '', `#${id}`)
+      }
+    }
+  }
 
   return (
     <>
@@ -72,13 +100,16 @@ export default function Navbar() {
           {/* Centered Slim Nav Links with Center-Out Underline */}
           <nav className="hidden md:flex items-center gap-5 lg:gap-7 mx-auto">
             {navLinks.map((link) => {
-              const isCurrentPage = pathname === link.href || (link.id === 'built-by-bxc' && pathname === '/built-by-bxc')
+              const href = getHref(link.id)
+              const isCurrentPage = pathname === href || (link.id === 'built-by-bxc' && pathname === '/built-by-bxc')
               const isActive = isCurrentPage || (pathname === '/' && activeSection === link.id)
 
               return (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  href={href}
+                  prefetch={false}
+                  onClick={(e) => handleNavClick(e, link.id)}
                   className={`nav-link relative text-[11px] font-semibold uppercase tracking-wider py-0.5 transition-colors duration-200 ${
                     isActive ? 'text-bxc-accent font-bold' : 'text-bxc-text/75 hover:text-bxc-text'
                   }`}
@@ -115,18 +146,18 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             <span
-              className={`block w-4 h-[1.5px] transition-transform duration-300 ${
-                mobileMenuOpen ? 'rotate-45 translate-y-[6px] bg-bxc-bg' : 'bg-bxc-text'
+              className={`block w-4 h-[1.5px] transition-transform duration-300 bg-bxc-text ${
+                mobileMenuOpen ? 'rotate-45 translate-y-[6px]' : ''
               }`}
             />
             <span
-              className={`block w-4 h-[1.5px] transition-opacity duration-300 ${
-                mobileMenuOpen ? 'opacity-0 bg-bxc-bg' : 'opacity-100 bg-bxc-text'
+              className={`block w-4 h-[1.5px] transition-opacity duration-300 bg-bxc-text ${
+                mobileMenuOpen ? 'opacity-0' : 'opacity-100'
               }`}
             />
             <span
-              className={`block w-4 h-[1.5px] transition-transform duration-300 ${
-                mobileMenuOpen ? '-rotate-45 -translate-y-[6px] bg-bxc-bg' : 'bg-bxc-text'
+              className={`block w-4 h-[1.5px] transition-transform duration-300 bg-bxc-text ${
+                mobileMenuOpen ? '-rotate-45 -translate-y-[6px]' : ''
               }`}
             />
           </button>
@@ -137,60 +168,118 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-0 z-[60] bg-bxc-dark/98 backdrop-blur-xl flex flex-col items-center justify-center p-6 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="fixed inset-0 z-[100] bg-[#111413] text-white flex flex-col justify-between overflow-y-auto px-6 py-8"
           >
-            {/* Close Button */}
-            <button
-              className="absolute top-6 right-6 p-2 text-white/70 hover:text-white focus:outline-none transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            {/* Ambient Background Accent */}
+            <div className="absolute top-0 right-0 w-80 h-80 bg-bxc-accent/[0.08] blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-bxc-accent/[0.05] blur-[100px] rounded-full pointer-events-none" />
 
-            <div className="mb-8">
-              <Logo dark />
+            {/* Top Bar with Logo and Close Button */}
+            <div className="relative z-10 flex items-center justify-between w-full max-w-lg mx-auto pb-6 border-b border-white/10">
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className="inline-flex items-center focus:outline-none"
+              >
+                <Logo dark />
+              </Link>
+
+              <button
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all shadow-md focus:outline-none"
+                onClick={() => setMobileMenuOpen(false)}
+                aria-label="Close navigation menu"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
             </div>
 
-            <nav className="flex flex-col items-center gap-6">
-              {navLinks.map((link, idx) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: idx * 0.05 + 0.1, duration: 0.35 }}
-                >
-                  <Link
-                    href={link.href}
-                    className="text-2xl font-light tracking-tight text-white hover:text-bxc-accent transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
+            {/* Central Navigation Links */}
+            <nav className="relative z-10 my-auto py-8 flex flex-col items-center gap-3 w-full max-w-md mx-auto">
+              {navLinks.map((link, idx) => {
+                const href = getHref(link.id)
+                const isCurrentPage = pathname === href || (link.id === 'built-by-bxc' && pathname === '/built-by-bxc')
+                const isActive = isCurrentPage || (pathname === '/' && activeSection === link.id)
+
+                return (
+                  <motion.div
+                    key={link.name}
+                    initial={{ y: 15, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: idx * 0.04 + 0.05, duration: 0.3 }}
+                    className="w-full"
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={href}
+                      prefetch={false}
+                      onClick={(e) => {
+                        setMobileMenuOpen(false)
+                        handleNavClick(e, link.id)
+                      }}
+                      className={`flex items-center justify-between w-full px-5 py-3.5 rounded-2xl transition-all duration-200 ${
+                        isActive
+                          ? 'bg-white/10 text-bxc-accent font-bold border border-bxc-accent/40 shadow-sm'
+                          : 'text-white/90 hover:text-white hover:bg-white/5 active:bg-white/10 font-medium'
+                      }`}
+                    >
+                      <span className="text-xl sm:text-2xl tracking-tight text-white font-semibold">
+                        {link.name}
+                      </span>
+                      <span className={`text-xs uppercase tracking-widest font-mono ${isActive ? 'text-bxc-accent font-bold' : 'text-white/40'}`}>
+                        {isActive ? '● ACTIVE' : `0${idx + 1}`}
+                      </span>
+                    </Link>
+                  </motion.div>
+                )
+              })}
 
               <motion.div
-                initial={{ y: 20, opacity: 0 }}
+                initial={{ y: 15, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: navLinks.length * 0.05 + 0.15, duration: 0.35 }}
-                className="mt-6"
+                transition={{ delay: navLinks.length * 0.04 + 0.1, duration: 0.3 }}
+                className="w-full pt-4 mt-2"
               >
                 <Link
-                  href="#contact"
-                  className="btn-bronze rounded-full px-7 py-3 text-xs uppercase tracking-wider font-semibold inline-block shadow-lg"
-                  onClick={() => setMobileMenuOpen(false)}
+                  href={pathname === '/' ? '#contact' : '/#contact'}
+                  prefetch={false}
+                  className="w-full text-center block bg-bxc-accent text-bxc-dark font-bold uppercase tracking-wider text-xs sm:text-sm py-4 px-6 rounded-full shadow-[0_10px_25px_rgba(176,141,87,0.3)] active:scale-[0.98] transition-all hover:bg-white"
+                  onClick={(e) => {
+                    setMobileMenuOpen(false)
+                    handleNavClick(e, 'contact')
+                  }}
                 >
-                  Request a Consultation
+                  Request a Consultation →
                 </Link>
               </motion.div>
             </nav>
+
+            {/* Bottom Quick Contact Information */}
+            <div className="relative z-10 w-full max-w-lg mx-auto pt-6 border-t border-white/10 text-center">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs text-white/75">
+                <a
+                  href="tel:14379734229"
+                  className="inline-flex items-center gap-1.5 hover:text-bxc-accent transition-colors font-medium"
+                >
+                  <span className="text-bxc-accent">📞</span> +1 (437) 973-4229
+                </a>
+                <span className="hidden sm:inline text-white/20">•</span>
+                <a
+                  href="mailto:info@bxcconstruction.ca"
+                  className="inline-flex items-center gap-1.5 hover:text-bxc-accent transition-colors font-medium"
+                >
+                  <span className="text-bxc-accent">✉️</span> info@bxcconstruction.ca
+                </a>
+              </div>
+              <p className="text-[11px] text-white/40 mt-2 font-mono">
+                Toronto & GTA, Ontario
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

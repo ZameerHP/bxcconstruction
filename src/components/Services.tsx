@@ -135,6 +135,12 @@ export default function Services() {
             <StaggerItem key={idx}>
               <Link
                 href="#contact"
+                prefetch={false}
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                  window.history.pushState(null, '', '#contact')
+                }}
                 className="bg-white rounded-card-lg overflow-hidden border border-bxc-border-light group hover:-translate-y-2 hover:shadow-2xl hover:border-bxc-accent/40 transition-all duration-500 flex flex-col h-full cursor-pointer"
                 data-cursor="project"
               >

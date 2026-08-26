@@ -2,10 +2,29 @@
 
 import React from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import ScrollReveal from '@/components/ScrollReveal'
 import Logo from '@/components/Logo'
 
 export default function Footer() {
+  const pathname = usePathname()
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (pathname === '/') {
+      e.preventDefault()
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+        window.history.pushState(null, '', `#${id}`)
+      }
+    }
+  }
+
+  const getHref = (id: string) => {
+    if (pathname === '/') return `#${id}`
+    return `/#${id}`
+  }
+
   return (
     <footer className="bg-bxc-dark py-16 md:py-24 w-full text-bxc-bg border-t border-bxc-border-dark relative overflow-hidden grain-overlay">
       <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
@@ -39,27 +58,52 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5 text-xs md:text-sm text-bxc-bg/70">
                 <li>
-                  <Link href="/#services" className="hover:text-bxc-accent transition-colors">
+                  <Link
+                    href={getHref('services')}
+                    prefetch={false}
+                    onClick={(e) => handleAnchorClick(e, 'services')}
+                    className="hover:text-bxc-accent transition-colors"
+                  >
                     Services
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#projects" className="hover:text-bxc-accent transition-colors">
+                  <Link
+                    href={getHref('projects')}
+                    prefetch={false}
+                    onClick={(e) => handleAnchorClick(e, 'projects')}
+                    className="hover:text-bxc-accent transition-colors"
+                  >
                     Selected Projects
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#process" className="hover:text-bxc-accent transition-colors">
+                  <Link
+                    href={getHref('process')}
+                    prefetch={false}
+                    onClick={(e) => handleAnchorClick(e, 'process')}
+                    className="hover:text-bxc-accent transition-colors"
+                  >
                     Five-Phase Process
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#quality" className="hover:text-bxc-accent transition-colors">
+                  <Link
+                    href={getHref('quality')}
+                    prefetch={false}
+                    onClick={(e) => handleAnchorClick(e, 'quality')}
+                    className="hover:text-bxc-accent transition-colors"
+                  >
                     Standards & Quality
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#faq" className="hover:text-bxc-accent transition-colors">
+                  <Link
+                    href={getHref('faq')}
+                    prefetch={false}
+                    onClick={(e) => handleAnchorClick(e, 'faq')}
+                    className="hover:text-bxc-accent transition-colors"
+                  >
                     FAQ
                   </Link>
                 </li>
@@ -104,9 +148,9 @@ export default function Footer() {
               © {new Date().getFullYear()} BXC Construction Inc. All rights reserved.
             </div>
             <div className="flex items-center gap-6">
-              <Link href="/" className="hover:text-bxc-accent transition-colors">Privacy Policy</Link>
-              <Link href="/" className="hover:text-bxc-accent transition-colors">Terms of Service</Link>
-              <Link href="/" className="hover:text-bxc-accent transition-colors">Safety Protocols</Link>
+              <Link href="/privacy-policy" className="hover:text-bxc-accent transition-colors">Privacy Policy</Link>
+              <Link href="/terms-of-service" className="hover:text-bxc-accent transition-colors">Terms of Service</Link>
+              <Link href="/safety-protocols" className="hover:text-bxc-accent transition-colors">Safety Protocols</Link>
             </div>
           </div>
         </ScrollReveal>

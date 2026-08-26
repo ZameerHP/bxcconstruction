@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from 'react'
 
 export default function CustomCursor() {
-  const [cursorType, setCursorType] = useState<'default' | 'project' | 'link'>('default')
+  const [cursorType, setCursorType] = useState<'default' | 'project' | 'link' | 'text'>('default')
   const [isVisible, setIsVisible] = useState(false)
+  const [isClicked, setIsClicked] = useState(false)
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
 
@@ -27,10 +28,13 @@ export default function CustomCursor() {
       }
     }
 
+    const handleMouseDown = () => setIsClicked(true)
+    const handleMouseUp = () => setIsClicked(false)
+
     const renderLoop = () => {
-      // Smooth interpolation for trailing ring
-      ringX += (mouseX - ringX) * 0.22
-      ringY += (mouseY - ringY) * 0.22
+      // Smooth interpolation for trailing ring (snappy 0.25 lerp factor)
+      ringX += (mouseX - ringX) * 0.25
+      ringY += (mouseY - ringY) * 0.25
 
       if (ringRef.current) {
         ringRef.current.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`
@@ -40,6 +44,8 @@ export default function CustomCursor() {
     }
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    window.addEventListener('mousedown', handleMouseDown, { passive: true })
+    window.addEventListener('mouseup', handleMouseUp, { passive: true })
     window.addEventListener('mouseenter', () => setIsVisible(true))
     window.addEventListener('mouseleave', () => setIsVisible(false))
 
@@ -48,7 +54,9 @@ export default function CustomCursor() {
       const target = e.target as HTMLElement
       if (target.closest('[data-cursor="project"]')) {
         setCursorType('project')
-      } else if (target.closest('a, button, [role="button"], input, textarea, select')) {
+      } else if (target.closest('input, textarea, [contenteditable="true"]')) {
+        setCursorType('text')
+      } else if (target.closest('a, button, [role="button"], select, label, summary, [tabindex]')) {
         setCursorType('link')
       } else {
         setCursorType('default')
@@ -60,6 +68,8 @@ export default function CustomCursor() {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mousedown', handleMouseDown)
+      window.removeEventListener('mouseup', handleMouseUp)
       document.removeEventListener('mouseover', handleOver)
       cancelAnimationFrame(animId)
     }
@@ -80,11 +90,13 @@ export default function CustomCursor() {
         <div
           className={`rounded-full border border-bxc-accent flex items-center justify-center transition-all duration-200 ${
             cursorType === 'project'
-              ? 'w-16 h-16 bg-bxc-accent/90 border-transparent shadow-lg'
+              ? 'w-16 h-16 bg-bxc-accent/90 border-transparent shadow-lg scale-100'
               : cursorType === 'link'
-              ? 'w-9 h-9 border-bxc-accent/80 scale-110'
-              : 'w-7 h-7 border-bxc-accent/40'
-          }`}
+              ? 'w-10 h-10 border-bxc-accent bg-bxc-accent/15 scale-110'
+              : cursorType === 'text'
+              ? 'w-4 h-7 rounded-sm border-bxc-accent/70 bg-bxc-accent/10'
+              : 'w-7 h-7 border-bxc-accent/40 bg-transparent'
+          } ${isClicked ? 'scale-90 opacity-80' : ''}`}
         >
           {cursorType === 'project' && (
             <span className="text-bxc-bg text-[9px] font-bold tracking-widest uppercase select-none">
@@ -104,7 +116,13 @@ export default function CustomCursor() {
       >
         <div
           className={`rounded-full bg-bxc-accent transition-all duration-150 ${
-            cursorType === 'project' ? 'w-0 h-0 opacity-0' : 'w-1.5 h-1.5 opacity-100'
+            cursorType === 'project'
+              ? 'w-0 h-0 opacity-0'
+              : cursorType === 'text'
+              ? 'w-0.5 h-3.5 rounded-none'
+              : isClicked
+              ? 'w-2 h-2 bg-white'
+              : 'w-1.5 h-1.5 opacity-100'
           }`}
         />
       </div>

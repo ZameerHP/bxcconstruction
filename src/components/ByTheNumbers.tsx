@@ -31,7 +31,7 @@ export default function ByTheNumbers() {
           <StaggerItem>
             <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[170px]">
               <div className="text-4xl md:text-5xl font-bold text-bxc-accent mb-2 tracking-tight">
-                <span ref={ref1}>0+</span>
+                <span ref={ref1}>319+</span>
               </div>
               <div className="text-xs text-bxc-bg/70 uppercase tracking-widest font-semibold">
                 Completed Projects
@@ -43,7 +43,7 @@ export default function ByTheNumbers() {
           <StaggerItem>
             <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[170px]">
               <div className="text-4xl md:text-5xl font-bold text-bxc-accent mb-2 tracking-tight">
-                <span ref={ref2}>0+</span>
+                <span ref={ref2}>4+</span>
               </div>
               <div className="text-xs text-bxc-bg/70 uppercase tracking-widest font-semibold">
                 Years Experience

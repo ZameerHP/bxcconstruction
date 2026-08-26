@@ -5,15 +5,33 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' })
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://bxcconstruction.ca')
+
 export const metadata: Metadata = {
   title: 'BXC Construction — Engineering the Extraordinary',
   description:
     'Premium design-build construction firm delivering uncompromising craftsmanship for luxury residential, commercial, and custom builds.',
-  metadataBase: new URL('https://bxcconstruction.ca'),
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: '/',
+  },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: ['/favicon.svg'],
+    apple: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+  },
+  themeColor: '#111413',
   openGraph: {
     title: 'BXC Construction — Engineering the Extraordinary',
     description: 'Premium design-build construction firm delivering uncompromising craftsmanship for luxury residential, commercial, and custom builds.',
-    url: 'https://bxcconstruction.ca',
+    url: siteUrl,
     siteName: 'BXC Construction',
     images: [
       {

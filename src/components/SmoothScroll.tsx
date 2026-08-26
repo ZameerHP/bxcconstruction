@@ -44,18 +44,26 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('a')
       if (target && target.hash && target.href) {
-        // Check if the link points to the current page
-        const targetUrl = new URL(target.href)
-        if (targetUrl.pathname === window.location.pathname) {
-          e.preventDefault()
-          if (lenisRef.current) {
-            lenisRef.current.scrollTo(target.hash, {
-              duration: 1.5,
-              easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-            })
-            // Update URL hash without native jump
-            window.history.pushState(null, '', target.hash)
+        try {
+          const targetUrl = new URL(target.href, window.location.href)
+          if (targetUrl.pathname === window.location.pathname) {
+            const targetElement = document.querySelector(target.hash)
+            if (targetElement) {
+              e.preventDefault()
+              if (lenisRef.current) {
+                lenisRef.current.scrollTo(target.hash, {
+                  offset: -70,
+                  duration: 1.2,
+                  easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                })
+              } else {
+                targetElement.scrollIntoView({ behavior: 'smooth' })
+              }
+              window.history.pushState(null, '', target.hash)
+            }
           }
+        } catch {
+          // Ignore parse errors
         }
       }
     }

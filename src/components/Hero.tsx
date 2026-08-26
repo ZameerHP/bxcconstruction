@@ -145,6 +145,12 @@ export default function Hero() {
 
               <Link
                 href="#projects"
+                prefetch={false}
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+                  window.history.pushState(null, '', '#projects')
+                }}
                 className="text-xs font-semibold uppercase tracking-wider text-bxc-bg/90 hover:text-bxc-accent transition-colors duration-200 inline-flex items-center gap-2 group py-2"
               >
                 <span>View Portfolio</span>
@@ -213,6 +219,12 @@ export default function Hero() {
       >
         <Link
           href="#services"
+          prefetch={false}
+          onClick={(e) => {
+            e.preventDefault()
+            document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })
+            window.history.pushState(null, '', '#services')
+          }}
           aria-label="Scroll to services"
           className="flex flex-col items-center gap-1.5 text-bxc-bg/50 hover:text-bxc-accent transition-colors duration-200 group"
         >

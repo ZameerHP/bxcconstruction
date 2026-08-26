@@ -23,7 +23,7 @@ export default function FinalCTA() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
 
@@ -48,17 +48,26 @@ _Sent via BXC Construction Website Consultation Form_`
 
     setWhatsappLink(url)
 
-    setTimeout(() => {
-      setLoading(false)
-      setSubmitted(true)
+    try {
+      // Dispatch lead payload to server backend
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+    } catch (err) {
+      console.warn('API contact log fallback triggered:', err)
+    }
 
-      // Open WhatsApp automatically in a new window/tab
-      try {
-        window.open(url, '_blank', 'noopener,noreferrer')
-      } catch (err) {
-        console.error('Popup blocked or error opening WhatsApp:', err)
-      }
-    }, 600)
+    setLoading(false)
+    setSubmitted(true)
+
+    // Open WhatsApp automatically in a new window/tab
+    try {
+      window.open(url, '_blank', 'noopener,noreferrer')
+    } catch (err) {
+      console.error('Popup blocked or error opening WhatsApp:', err)
+    }
   }
 
   return (

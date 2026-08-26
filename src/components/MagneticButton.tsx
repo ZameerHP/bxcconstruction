@@ -61,9 +61,22 @@ export default function MagneticButton({
     </motion.div>
   )
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) onClick()
+    if (href && href.startsWith('#')) {
+      const targetId = href.replace(/^#/, '')
+      const el = document.getElementById(targetId)
+      if (el) {
+        e.preventDefault()
+        el.scrollIntoView({ behavior: 'smooth' })
+        window.history.pushState(null, '', href)
+      }
+    }
+  }
+
   if (href) {
     return (
-      <Link href={href} onClick={onClick} className="inline-block focus:outline-none">
+      <Link href={href} prefetch={false} onClick={handleClick} className="inline-block focus:outline-none">
         {content}
       </Link>
     )
