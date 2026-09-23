@@ -130,8 +130,8 @@ export default function Footer() {
                 HEADQUARTERS
               </h3>
               <div className="text-xs md:text-sm text-bxc-bg/70 space-y-2 leading-relaxed">
-                <p>123 Construction Avenue, Suite 400</p>
-                <p>Toronto, ON M5V 2T6</p>
+                <p>106 - 12 Crescent Town Rd</p>
+                <p>East York, ON M4C 5L3</p>
                 <p className="pt-2 font-mono text-bxc-accent">+1 (437) 450-5507</p>
                 <p className="font-mono text-bxc-accent">+1 (437) 973-4229</p>
                 <p className="pt-1">

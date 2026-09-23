@@ -195,7 +195,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <p className="font-semibold text-bxc-bg text-sm mb-1">500+ Luxury Projects Delivered</p>
+              <p className="font-semibold text-bxc-bg text-sm mb-1">319+ Luxury Projects Delivered</p>
               <p className="text-xs text-bxc-bg/60 mb-4">100% On-Time & Fixed-Budget Guarantee</p>
 
               <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-bxc-bg/70">

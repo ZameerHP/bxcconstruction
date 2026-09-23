@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/ScrollReveal'
@@ -38,8 +38,200 @@ function ServiceIcon({ type }: { type: string }) {
   )
 }
 
+interface ServiceImage {
+  src: string
+  label: string
+}
+
+interface ServiceItem {
+  title: string
+  description: string
+  image: string
+  images?: ServiceImage[]
+  icon: string
+  tag: string
+}
+
+function ServiceCard({ service, idx }: { service: ServiceItem; idx: number }) {
+  const [currentImgIdx, setCurrentImgIdx] = useState(0)
+  const hasMultipleImages = Boolean(service.images && service.images.length > 1)
+  const imageList: ServiceImage[] = service.images || [{ src: service.image, label: service.title }]
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setCurrentImgIdx((prev) => (prev === 0 ? imageList.length - 1 : prev - 1))
+  }
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setCurrentImgIdx((prev) => (prev === imageList.length - 1 ? 0 : prev + 1))
+  }
+
+  const scrollToContact = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+    const target = document.getElementById('contact')
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' })
+      window.history.pushState(null, '', '#contact')
+    }
+  }
+
+  return (
+    <div
+      className="bg-white rounded-card-lg overflow-hidden border border-bxc-border-light group hover:-translate-y-2 hover:shadow-2xl hover:border-bxc-accent/40 transition-all duration-500 flex flex-col h-full relative"
+    >
+      {/* Image Container with Multi-image Slider */}
+      <div className="aspect-[16/10] relative overflow-hidden bg-bxc-dark/10 select-none">
+        {/* Pre-rendered Images with cross-fade */}
+        {imageList.map((img, i) => (
+          <div
+            key={img.src}
+            className={`absolute inset-0 transition-opacity duration-400 ease-in-out ${
+              i === currentImgIdx ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 pointer-events-none z-0'
+            }`}
+          >
+            <Image
+              src={img.src}
+              alt={`${service.title} - ${img.label}`}
+              fill
+              priority={idx < 3}
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+        ))}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
+
+        {/* Category Tag */}
+        <div className="absolute top-3.5 left-3.5 z-20 pointer-events-none">
+          <span className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-bxc-dark/85 backdrop-blur-md text-bxc-bg border border-white/15 shadow-sm">
+            {service.tag}
+          </span>
+        </div>
+
+        {/* Phase Toggle Pills (Framing / Drywall) */}
+        {hasMultipleImages && (
+          <div
+            className="absolute top-3.5 right-3.5 z-30 flex items-center bg-black/75 backdrop-blur-md rounded-full p-1 border border-white/20 shadow-md"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {imageList.map((img, i) => (
+              <button
+                key={img.label}
+                type="button"
+                aria-label={`Show ${img.label} photo`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  setCurrentImgIdx(i)
+                }}
+                className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                  i === currentImgIdx
+                    ? 'bg-bxc-accent text-bxc-bg shadow-sm scale-102'
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {img.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Side Arrows to switch between Framing and Drywall images */}
+        {hasMultipleImages && (
+          <>
+            <button
+              type="button"
+              aria-label="Previous work phase"
+              title="Previous phase"
+              onClick={handlePrev}
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/80 hover:bg-bxc-accent text-white flex items-center justify-center backdrop-blur-md border border-white/25 hover:border-bxc-accent transition-all duration-200 hover:scale-115 shadow-xl active:scale-95 cursor-pointer"
+            >
+              <svg className="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Next work phase"
+              title="Next phase"
+              onClick={handleNext}
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/80 hover:bg-bxc-accent text-white flex items-center justify-center backdrop-blur-md border border-white/25 hover:border-bxc-accent transition-all duration-200 hover:scale-115 shadow-xl active:scale-95 cursor-pointer"
+            >
+              <svg className="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+
+            {/* Slide Indicator Dots */}
+            <div
+              className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-black/65 px-3 py-1 rounded-full backdrop-blur-md border border-white/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {imageList.map((img, dotIdx) => (
+                <button
+                  key={img.src}
+                  type="button"
+                  aria-label={`View ${img.label}`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setCurrentImgIdx(dotIdx)
+                  }}
+                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                    dotIdx === currentImgIdx
+                      ? 'w-5 h-1.5 bg-bxc-accent'
+                      : 'w-1.5 h-1.5 bg-white/50 hover:bg-white'
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      <div
+        onClick={scrollToContact}
+        className="p-7 md:p-8 flex flex-col flex-grow cursor-pointer"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-10 h-10 rounded-xl bg-bxc-card flex items-center justify-center text-bxc-accent group-hover:bg-bxc-accent group-hover:text-bxc-bg transition-colors duration-300">
+            <ServiceIcon type={service.icon} />
+          </div>
+          <span className="text-xs font-mono font-bold text-bxc-accent/60">
+            0{idx + 1}
+          </span>
+        </div>
+
+        <h3 className="text-card-title font-semibold text-bxc-text mb-3 group-hover:text-bxc-accent transition-colors">
+          {service.title}
+        </h3>
+        <p className="text-sm text-bxc-text/70 leading-relaxed font-normal mb-6 flex-grow">
+          {service.description}
+        </p>
+
+        <div className="pt-4 border-t border-bxc-border-light/50 flex items-center justify-between">
+          <span className="text-xs uppercase tracking-wider text-bxc-accent font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            Request Consultation →
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Services() {
-  const services = [
+  const services: ServiceItem[] = [
     {
       title: 'Custom Homes',
       description: 'Complete custom home construction from foundation to finishing.',
@@ -49,59 +241,48 @@ export default function Services() {
     },
     {
       title: 'Residential Construction',
-      description: 'New builds, additions, structural work and complete home projects.',
-      image: '/images/780086540_1760565428525052_4152121409823587029_n.jpg',
+      description: 'New builds, additions, structural framing, and complete home construction projects.',
+      image: '/images/776495940_2154523122110609_356760332200612717_n.jpg',
       icon: 'building',
       tag: 'NEW BUILDS',
     },
     {
-      title: 'Commercial Construction',
-      description: 'Construction and renovation for offices, retail and commercial spaces.',
-      image: '/images/780443235_1739838417323113_2356242721593559861_n.jpg',
-      icon: 'tower',
-      tag: 'COMMERCIAL',
-    },
-    {
-      title: 'Home Renovations',
-      description: 'Full renovations, basement finishing, kitchens and bathrooms.',
-      image: '/images/782144319_925739119992036_1634993976219471516_n.jpg',
-      icon: 'hammer',
-      tag: 'RENOVATION',
-    },
-    {
-      title: 'Framing & Drywall',
-      description: 'Structural framing, interior walls, drywall, taping and finishing.',
-      image: '/images/782876125_907950201938571_8201646372247002772_n.jpg',
-      icon: 'wall',
-      tag: 'STRUCTURAL',
-    },
-    {
-      title: 'Flooring & Tile',
-      description: 'Hardwood, laminate, vinyl, engineered flooring and tile installation.',
-      image: '/images/783374092_964415036671558_7671081481764060370_n.jpg',
-      icon: 'tile',
-      tag: 'FINISHES',
-    },
-    {
-      title: 'Concrete & Foundation',
-      description: 'Excavation, foundation work, concrete slabs and structural concrete.',
-      image: '/images/784249740_977908725320344_6692216013069105814_n.jpg',
-      icon: 'foundation',
-      tag: 'FOUNDATION',
-    },
-    {
       title: 'Roofing & Exterior',
-      description: 'Roofing, cladding, siding, soffits, decks and fences.',
-      image: '/images/775335805_1749185182797917_1503259357166593370_n.jpg',
+      description: 'Roofing, architectural facade cladding, siding, soffits, and exterior envelope systems.',
+      image: '/images/783374092_964415036671558_7671081481764060370_n.jpg',
       icon: 'roof',
       tag: 'EXTERIOR',
     },
     {
-      title: 'General Contracting',
-      description: 'Planning, estimates, scheduling, trade coordination and quality control.',
-      image: '/images/776495940_2154523122110609_356760332200612717_n.jpg',
-      icon: 'clipboard',
-      tag: 'MANAGEMENT',
+      title: 'Framing & Drywall',
+      description: 'Structural framing, interior partition walls, drywall boarding, taping and finishing.',
+      image: '/images/775335805_1749185182797917_1503259357166593370_n.jpg',
+      images: [
+        {
+          src: '/images/775335805_1749185182797917_1503259357166593370_n.jpg',
+          label: 'Framing',
+        },
+        {
+          src: '/images/project-8.jpg',
+          label: 'Drywall',
+        },
+      ],
+      icon: 'wall',
+      tag: 'STRUCTURAL',
+    },
+    {
+      title: 'Concrete & Foundation',
+      description: 'Excavation, foundation footings, poured concrete slabs and structural concrete groundwork.',
+      image: '/images/780086540_1760565428525052_4152121409823587029_n.jpg',
+      icon: 'foundation',
+      tag: 'FOUNDATION',
+    },
+    {
+      title: 'Flooring & Tile',
+      description: 'Hardwood, porcelain tile, engineered planks, laminate, and precision tile installation.',
+      image: '/images/flooring-tile-install.jpg',
+      icon: 'tile',
+      tag: 'FINISHES',
     },
   ]
 
@@ -133,58 +314,7 @@ export default function Services() {
         >
           {services.map((service, idx) => (
             <StaggerItem key={idx}>
-              <Link
-                href="#contact"
-                prefetch={false}
-                onClick={(e) => {
-                  e.preventDefault()
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                  window.history.pushState(null, '', '#contact')
-                }}
-                className="bg-white rounded-card-lg overflow-hidden border border-bxc-border-light group hover:-translate-y-2 hover:shadow-2xl hover:border-bxc-accent/40 transition-all duration-500 flex flex-col h-full cursor-pointer"
-                data-cursor="project"
-              >
-                {/* Image Container with Ken Burns Hover */}
-                <div className="aspect-[16/10] relative overflow-hidden bg-bxc-dark/10">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-bxc-dark/80 backdrop-blur-md text-bxc-bg border border-white/10">
-                      {service.tag}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-7 md:p-8 flex flex-col flex-grow">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-bxc-card flex items-center justify-center text-bxc-accent group-hover:bg-bxc-accent group-hover:text-bxc-bg transition-colors duration-300">
-                      <ServiceIcon type={service.icon} />
-                    </div>
-                    <span className="text-xs font-mono font-bold text-bxc-accent/60">
-                      0{idx + 1}
-                    </span>
-                  </div>
-
-                  <h3 className="text-card-title font-semibold text-bxc-text mb-3 group-hover:text-bxc-accent transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-bxc-text/70 leading-relaxed font-normal mb-6 flex-grow">
-                    {service.description}
-                  </p>
-
-                  <div className="pt-4 border-t border-bxc-border-light/50 flex items-center justify-between">
-                    <span className="text-xs uppercase tracking-wider text-bxc-accent font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                      Request Consultation →
-                    </span>
-                  </div>
-                </div>
-              </Link>
+              <ServiceCard service={service} idx={idx} />
             </StaggerItem>
           ))}
         </StaggerContainer>
@@ -192,3 +322,4 @@ export default function Services() {
     </section>
   )
 }
+

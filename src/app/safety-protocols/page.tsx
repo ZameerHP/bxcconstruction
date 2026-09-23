@@ -127,7 +127,7 @@ export default function SafetyProtocolsPage() {
                   </p>
                   <div className="bg-bxc-card p-5 rounded-xl border border-bxc-border-light text-xs md:text-sm font-mono space-y-1">
                     <p className="font-bold text-bxc-text">BXC Construction Inc. — Health & Safety Division</p>
-                    <p className="text-bxc-text/75">123 Construction Avenue, Suite 400, Toronto, ON M5V 2T6</p>
+                    <p className="text-bxc-text/75">106 - 12 Crescent Town Rd, East York, ON M4C 5L3</p>
                     <p className="text-bxc-accent">Email: info@bxcconstruction.ca</p>
                     <p className="text-bxc-text/75">Phone: +1 (437) 450-5507 / +1 (437) 973-4229</p>
                   </div>

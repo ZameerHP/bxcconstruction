@@ -5,13 +5,13 @@ import ScrollReveal, { StaggerContainer, StaggerItem } from '@/components/Scroll
 
 const areas = [
   'Toronto',
+  'East York',
   'Mississauga',
   'Brampton',
   'Vaughan',
   'Richmond Hill',
   'Hamilton',
   'GTA',
-  'Ontario',
 ]
 
 export default function ServiceAreas() {

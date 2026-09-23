@@ -12,7 +12,6 @@ import Process from '@/components/Process'
 import FeaturedProjects from '@/components/FeaturedProjects'
 import Industries from '@/components/Industries'
 import ByTheNumbers from '@/components/ByTheNumbers'
-import Team from '@/components/Team'
 import QualitySafety from '@/components/QualitySafety'
 import Testimonials from '@/components/Testimonials'
 import FAQ from '@/components/FAQ'
@@ -92,7 +91,6 @@ export default function Home() {
               <FeaturedProjects />
               <Industries />
               <ByTheNumbers />
-              <Team />
               <QualitySafety />
               <Testimonials />
               <FAQ />

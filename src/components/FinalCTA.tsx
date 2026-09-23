@@ -240,7 +240,7 @@ _Sent via BXC Construction Website Consultation Form_`
                         <option value="Custom Residential">Custom Residential</option>
                         <option value="Commercial Construction">Commercial Construction</option>
                         <option value="Renovation & Remodeling">Renovation & Remodeling</option>
-                        <option value="General Contracting">General Contracting</option>
+                        <option value="Residential Construction">Residential Construction</option>
                         <option value="Engineering & Feasibility">Engineering & Feasibility</option>
                         <option value="Other">Other</option>
                       </select>
