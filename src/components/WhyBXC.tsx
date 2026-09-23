@@ -57,17 +57,17 @@ export default function WhyBXC() {
   ]
 
   return (
-    <section id="why-bxc" className="bg-bxc-bg py-28 md:py-36 w-full relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="why-bxc" className="bg-bxc-bg py-16 sm:py-24 md:py-36 w-full relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8">
         <ScrollReveal>
-          <div className="mb-16 md:mb-20 max-w-3xl">
-            <div className="flex items-center gap-3 mb-3">
+          <div className="mb-10 sm:mb-16 md:mb-20 max-w-3xl">
+            <div className="flex items-center gap-3 mb-2.5 sm:mb-3">
               <span className="w-6 h-[1.5px] bg-bxc-accent" />
               <p className="text-eyebrow uppercase tracking-eyebrow font-semibold text-bxc-accent">
                 WHY CHOOSE US
               </p>
             </div>
-            <h2 className="text-section font-semibold text-bxc-text tracking-tight mb-4">
+            <h2 className="text-section font-semibold text-bxc-text tracking-tight mb-3 sm:mb-4">
               Built With Purpose. Delivered With Care.
             </h2>
             <p className="text-sm md:text-base text-bxc-text/75 leading-relaxed max-w-2xl">
@@ -77,10 +77,10 @@ export default function WhyBXC() {
         </ScrollReveal>
 
         {/* 4 Elevated Cards with Ghost Numbers & Distinct Icons */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7">
           {cards.map((card, idx) => (
             <StaggerItem key={idx}>
-              <div className="relative overflow-hidden group h-full bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-9 border border-bxc-border-light card-premium flex flex-col justify-between">
+              <div className="relative overflow-hidden group h-full bg-white/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-9 border border-bxc-border-light card-premium flex flex-col justify-between">
                 {/* Large Ultra-Lightweight Ghost Numeral in Background */}
                 <span className="absolute -top-3 -right-2 text-7xl md:text-8xl font-mono font-extrabold text-bxc-accent/10 select-none pointer-events-none group-hover:text-bxc-accent/20 transition-colors duration-500">
                   {card.number}

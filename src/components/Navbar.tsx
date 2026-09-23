@@ -138,25 +138,25 @@ export default function Navbar() {
             </MagneticButton>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Hamburger - minimum 44x44px touch target */}
           <button
             suppressHydrationWarning
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-50 relative focus:outline-none"
+            className="md:hidden flex flex-col justify-center items-center w-11 h-11 space-y-1.5 z-50 relative focus:outline-none -mr-1"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
             <span
-              className={`block w-4 h-[1.5px] transition-transform duration-300 bg-bxc-text ${
+              className={`block w-5 h-[1.5px] transition-transform duration-300 bg-bxc-text ${
                 mobileMenuOpen ? 'rotate-45 translate-y-[6px]' : ''
               }`}
             />
             <span
-              className={`block w-4 h-[1.5px] transition-opacity duration-300 bg-bxc-text ${
+              className={`block w-5 h-[1.5px] transition-opacity duration-300 bg-bxc-text ${
                 mobileMenuOpen ? 'opacity-0' : 'opacity-100'
               }`}
             />
             <span
-              className={`block w-4 h-[1.5px] transition-transform duration-300 bg-bxc-text ${
+              className={`block w-5 h-[1.5px] transition-transform duration-300 bg-bxc-text ${
                 mobileMenuOpen ? '-rotate-45 -translate-y-[6px]' : ''
               }`}
             />
@@ -164,7 +164,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Menu Fullscreen Dark Overlay */}
+      {/* Mobile Menu Fullscreen Dark Overlay with Safe Area Insets */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -172,14 +172,14 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed inset-0 z-[100] bg-[#111413] text-white flex flex-col justify-between overflow-y-auto px-6 py-8"
+            className="fixed inset-0 z-[100] bg-[#111413] text-white flex flex-col justify-between overflow-y-auto px-5 sm:px-6 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
           >
             {/* Ambient Background Accent */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-bxc-accent/[0.08] blur-[100px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-bxc-accent/[0.05] blur-[100px] rounded-full pointer-events-none" />
 
             {/* Top Bar with Logo and Close Button */}
-            <div className="relative z-10 flex items-center justify-between w-full max-w-lg mx-auto pb-6 border-b border-white/10">
+            <div className="relative z-10 flex items-center justify-between w-full max-w-lg mx-auto pb-4 sm:pb-6 border-b border-white/10">
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
@@ -189,7 +189,7 @@ export default function Navbar() {
               </Link>
 
               <button
-                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all shadow-md focus:outline-none"
+                className="w-11 h-11 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center hover:bg-white/20 active:scale-95 transition-all shadow-md focus:outline-none min-h-[44px] min-w-[44px]"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close navigation menu"
               >
@@ -201,7 +201,7 @@ export default function Navbar() {
             </div>
 
             {/* Central Navigation Links */}
-            <nav className="relative z-10 my-auto py-8 flex flex-col items-center gap-3 w-full max-w-md mx-auto">
+            <nav className="relative z-10 my-auto py-6 sm:py-8 flex flex-col items-center gap-2 sm:gap-3 w-full max-w-md mx-auto">
               {navLinks.map((link, idx) => {
                 const href = getHref(link.id)
                 const isCurrentPage = pathname === href || (link.id === 'built-by-bxc' && pathname === '/built-by-bxc')
@@ -222,16 +222,16 @@ export default function Navbar() {
                         setMobileMenuOpen(false)
                         handleNavClick(e, link.id)
                       }}
-                      className={`flex items-center justify-between w-full px-5 py-3.5 rounded-2xl transition-all duration-200 ${
+                      className={`flex items-center justify-between w-full px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl transition-all duration-200 min-h-[48px] ${
                         isActive
                           ? 'bg-white/10 text-bxc-accent font-bold border border-bxc-accent/40 shadow-sm'
                           : 'text-white/90 hover:text-white hover:bg-white/5 active:bg-white/10 font-medium'
                       }`}
                     >
-                      <span className="text-xl sm:text-2xl tracking-tight text-white font-semibold">
+                      <span className="text-lg sm:text-2xl tracking-tight text-white font-semibold">
                         {link.name}
                       </span>
-                      <span className={`text-xs uppercase tracking-widest font-mono ${isActive ? 'text-bxc-accent font-bold' : 'text-white/40'}`}>
+                      <span className={`text-[11px] sm:text-xs uppercase tracking-widest font-mono ${isActive ? 'text-bxc-accent font-bold' : 'text-white/40'}`}>
                         {isActive ? '● ACTIVE' : `0${idx + 1}`}
                       </span>
                     </Link>
@@ -243,12 +243,12 @@ export default function Navbar() {
                 initial={{ y: 15, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: navLinks.length * 0.04 + 0.1, duration: 0.3 }}
-                className="w-full pt-4 mt-2"
+                className="w-full pt-3 sm:pt-4 mt-2"
               >
                 <Link
                   href={pathname === '/' ? '#contact' : '/#contact'}
                   prefetch={false}
-                  className="w-full text-center block bg-bxc-accent text-bxc-dark font-bold uppercase tracking-wider text-xs sm:text-sm py-4 px-6 rounded-full shadow-[0_10px_25px_rgba(176,141,87,0.3)] active:scale-[0.98] transition-all hover:bg-white"
+                  className="w-full text-center block bg-bxc-accent text-bxc-dark font-bold uppercase tracking-wider text-xs sm:text-sm py-3.5 sm:py-4 px-6 rounded-full shadow-[0_10px_25px_rgba(176,141,87,0.3)] active:scale-[0.98] transition-all hover:bg-white min-h-[48px] flex items-center justify-center"
                   onClick={(e) => {
                     setMobileMenuOpen(false)
                     handleNavClick(e, 'contact')
@@ -260,23 +260,23 @@ export default function Navbar() {
             </nav>
 
             {/* Bottom Quick Contact Information */}
-            <div className="relative z-10 w-full max-w-lg mx-auto pt-6 border-t border-white/10 text-center">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs text-white/75">
+            <div className="relative z-10 w-full max-w-lg mx-auto pt-4 sm:pt-6 border-t border-white/10 text-center">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-6 text-xs text-white/75">
                 <a
                   href="tel:14379734229"
-                  className="inline-flex items-center gap-1.5 hover:text-bxc-accent transition-colors font-medium"
+                  className="inline-flex items-center justify-center min-h-[44px] px-3 gap-1.5 hover:text-bxc-accent transition-colors font-medium"
                 >
                   <span className="text-bxc-accent">📞</span> +1 (437) 973-4229
                 </a>
                 <span className="hidden sm:inline text-white/20">•</span>
                 <a
                   href="mailto:info@bxcconstruction.ca"
-                  className="inline-flex items-center gap-1.5 hover:text-bxc-accent transition-colors font-medium"
+                  className="inline-flex items-center justify-center min-h-[44px] px-3 gap-1.5 hover:text-bxc-accent transition-colors font-medium"
                 >
                   <span className="text-bxc-accent">✉️</span> info@bxcconstruction.ca
                 </a>
               </div>
-              <p className="text-[11px] text-white/40 mt-2 font-mono">
+              <p className="text-[11px] text-white/40 mt-1 font-mono">
                 Toronto & GTA, Ontario
               </p>
             </div>

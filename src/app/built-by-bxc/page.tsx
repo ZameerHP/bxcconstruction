@@ -244,23 +244,23 @@ export default function BuiltByBXCPage() {
 
           <main>
             {/* Gallery Hero Banner */}
-            <section className="relative pt-32 md:pt-44 pb-16 md:pb-24 px-6 md:px-8 max-w-7xl mx-auto overflow-hidden">
+            <section className="relative pt-24 xs:pt-30 md:pt-44 pb-12 sm:pb-16 md:pb-24 px-4 xs:px-6 md:px-8 max-w-7xl mx-auto overflow-hidden">
               <div className="relative z-10 max-w-4xl">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 mb-6"
+                  className="inline-flex items-center gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 mb-4 sm:mb-6"
                 >
                   <span className="w-2 h-2 rounded-full bg-bxc-accent animate-pulse" />
-                  <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-bxc-accent">
+                  <p className="text-[10px] xs:text-[11px] uppercase tracking-[0.2em] font-semibold text-bxc-accent">
                     FULL PROJECT SHOWCASE
                   </p>
                 </motion.div>
 
-                <h1 className="text-hero font-semibold text-bxc-bg mb-6 tracking-tight flex flex-wrap gap-x-3 md:gap-x-5 gap-y-1">
+                <h1 className="text-hero font-semibold text-bxc-bg mb-4 sm:mb-6 tracking-tight flex flex-wrap gap-x-2.5 sm:gap-x-3 md:gap-x-5 gap-y-1">
                   {titleWords.map((word, idx) => (
-                    <span key={idx} className="overflow-hidden inline-block pb-2">
+                    <span key={idx} className="overflow-hidden inline-block pb-1 sm:pb-2">
                       <motion.span
                         initial={{ y: '100%', opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
@@ -277,7 +277,7 @@ export default function BuiltByBXCPage() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-base md:text-lg text-bxc-bg/80 max-w-2xl font-light leading-relaxed mb-10"
+                  className="text-sm xs:text-base md:text-lg text-bxc-bg/80 max-w-2xl font-light leading-relaxed mb-6 sm:mb-10"
                 >
                   A complete visual record of every estate, commercial build, and structural project we&apos;ve delivered.
                 </motion.p>
@@ -287,7 +287,7 @@ export default function BuiltByBXCPage() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
-                  className="flex flex-wrap items-center gap-2.5 md:gap-3.5 pt-2"
+                  className="flex flex-wrap items-center gap-2 sm:gap-2.5 md:gap-3.5 pt-1 sm:pt-2"
                 >
                   {categories.map((category) => {
                     const count =
@@ -301,7 +301,7 @@ export default function BuiltByBXCPage() {
                         suppressHydrationWarning
                         key={category}
                         onClick={() => setActiveCategory(category)}
-                        className={`rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                        className={`rounded-full px-4 sm:px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 min-h-[40px] flex items-center justify-center cursor-pointer ${
                           isActive
                             ? 'bg-bxc-accent text-bxc-bg shadow-[0_0_20px_rgba(176,141,87,0.4)] border border-bxc-accent scale-105'
                             : 'bg-white/5 text-bxc-bg/75 border border-white/15 hover:border-bxc-accent/60 hover:text-bxc-bg'
@@ -316,8 +316,8 @@ export default function BuiltByBXCPage() {
             </section>
 
             {/* Perfect Responsive Grid - NO Useless Space */}
-            <section className="max-w-7xl mx-auto px-6 md:px-8 pb-32">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            <section className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8 pb-20 sm:pb-32">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
                 {filteredItems.map((item) => (
                   <GalleryCard key={item.id} item={item} onClick={() => openLightbox(item)} />
                 ))}
@@ -339,7 +339,7 @@ export default function BuiltByBXCPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 z-[110] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-between p-4 md:p-8 select-none"
+              className="fixed inset-0 z-[110] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-between p-3 xs:p-4 md:p-8 select-none"
               onClick={() => setSelectedItem(null)}
             >
               {/* Header */}
@@ -359,7 +359,7 @@ export default function BuiltByBXCPage() {
                 <button
                   suppressHydrationWarning
                   onClick={() => setSelectedItem(null)}
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-sm transition-colors duration-200"
+                  className="w-11 h-11 min-h-[44px] min-w-[44px] rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-base transition-colors duration-200 cursor-pointer"
                   aria-label="Close Lightbox"
                 >
                   ✕
@@ -368,13 +368,13 @@ export default function BuiltByBXCPage() {
 
               {/* Main Media with Controls */}
               <div
-                className="relative w-full max-w-6xl flex-1 flex items-center justify-center my-4"
+                className="relative w-full max-w-6xl flex-1 flex items-center justify-center my-3 sm:my-4"
                 onClick={(e) => e.stopPropagation()}
               >
                 <button
                   suppressHydrationWarning
                   onClick={prevLightbox}
-                  className="absolute left-2 md:left-4 z-30 w-12 h-12 rounded-full bg-black/70 hover:bg-bxc-accent text-white border border-white/20 flex items-center justify-center text-lg transition-all duration-200 active:scale-90 shadow-xl"
+                  className="absolute left-2 md:left-4 z-30 w-11 h-11 md:w-12 md:h-12 min-h-[44px] min-w-[44px] rounded-full bg-black/70 hover:bg-bxc-accent text-white border border-white/20 flex items-center justify-center text-lg transition-all duration-200 active:scale-90 shadow-xl cursor-pointer"
                   aria-label="Previous item"
                 >
                   ←
@@ -386,7 +386,7 @@ export default function BuiltByBXCPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full h-[60vh] md:h-[72vh] flex items-center justify-center"
+                  className="relative w-full h-[52vh] xs:h-[58vh] md:h-[72vh] flex items-center justify-center"
                 >
                   {selectedItem.type === 'video' ? (
                     <video
@@ -411,7 +411,7 @@ export default function BuiltByBXCPage() {
                 <button
                   suppressHydrationWarning
                   onClick={nextLightbox}
-                  className="absolute right-2 md:right-4 z-30 w-12 h-12 rounded-full bg-black/70 hover:bg-bxc-accent text-white border border-white/20 flex items-center justify-center text-lg transition-all duration-200 active:scale-90 shadow-xl"
+                  className="absolute right-2 md:right-4 z-30 w-11 h-11 md:w-12 md:h-12 min-h-[44px] min-w-[44px] rounded-full bg-black/70 hover:bg-bxc-accent text-white border border-white/20 flex items-center justify-center text-lg transition-all duration-200 active:scale-90 shadow-xl cursor-pointer"
                   aria-label="Next item"
                 >
                   →
@@ -423,13 +423,13 @@ export default function BuiltByBXCPage() {
                 className="w-full max-w-3xl text-center z-20 pb-2"
                 onClick={(e) => e.stopPropagation()}
               >
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1 tracking-tight">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-1 tracking-tight">
                   {selectedItem.title}
                 </h3>
-                <p className="text-xs md:text-sm text-white/70 max-w-xl mx-auto leading-relaxed">
+                <p className="text-xs sm:text-sm text-white/70 max-w-xl mx-auto leading-relaxed line-clamp-2 sm:line-clamp-none">
                   {selectedItem.description}
                 </p>
-                <p className="text-[11px] font-mono text-bxc-accent font-semibold mt-2">
+                <p className="text-[10px] sm:text-[11px] font-mono text-bxc-accent font-semibold mt-1.5 sm:mt-2">
                   {selectedItem.location} · {selectedItem.year}
                 </p>
               </div>

@@ -52,7 +52,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       id="hero"
-      className="relative min-h-[100svh] flex flex-col justify-between pb-14 md:pb-20 pt-28 md:pt-36 overflow-hidden bg-bxc-dark"
+      className="relative min-h-[100svh] flex flex-col justify-between pb-8 sm:pb-12 md:pb-16 pt-24 xs:pt-28 md:pt-36 overflow-hidden bg-bxc-dark"
     >
       {/* 3D Blueprint Interactive Particle Canvas */}
       <ArchitecturalCanvas />
@@ -81,9 +81,9 @@ export default function Hero() {
       {/* Hero Foreground Content */}
       <motion.div
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-8 mt-auto mb-6"
+        className="relative z-10 max-w-7xl mx-auto w-full px-4 xs:px-6 md:px-8 mt-auto mb-6"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-end">
           {/* Main Headline & Description */}
           <div className="lg:col-span-8">
             {/* Eyebrow badge */}
@@ -91,10 +91,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 mb-6"
+              className="inline-flex items-center gap-2.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 mb-4 sm:mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-bxc-accent animate-pulse" />
-              <p className="text-[11px] uppercase tracking-[0.16em] font-medium text-bxc-accent">
+              <p className="text-[10px] xs:text-[11px] uppercase tracking-[0.16em] font-medium text-bxc-accent">
                 PREMIUM DESIGN-BUILD CONSTRUCTION
               </p>
             </motion.div>
@@ -104,10 +104,10 @@ export default function Hero() {
               variants={wordContainerVariants}
               initial="hidden"
               animate={mounted ? 'visible' : 'hidden'}
-              className="text-hero font-semibold text-bxc-bg mb-6 tracking-tight flex flex-wrap gap-x-3 md:gap-x-5 gap-y-1"
+              className="text-hero font-semibold text-bxc-bg mb-4 sm:mb-6 tracking-tight flex flex-wrap gap-x-2.5 sm:gap-x-3 md:gap-x-5 gap-y-1"
             >
               {words.map((word, idx) => (
-                <span key={idx} className="overflow-hidden inline-block pb-2">
+                <span key={idx} className="overflow-hidden inline-block pb-1 sm:pb-2">
                   <motion.span
                     variants={wordItemVariants}
                     className="inline-block"
@@ -123,7 +123,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-base md:text-lg text-bxc-bg/85 font-normal max-w-2xl leading-relaxed mb-8"
+              className="text-sm xs:text-base md:text-lg text-bxc-bg/85 font-normal max-w-2xl leading-relaxed mb-6 sm:mb-8"
             >
               From ground-up luxury estates to landmark commercial builds — BXC Construction delivers uncompromising craftsmanship, precision engineering, and absolute transparency.
             </motion.p>
@@ -133,12 +133,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4 md:gap-6"
+              className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6"
             >
               <MagneticButton
                 href="#contact"
                 variant="primary"
-                className="px-7 py-3 text-xs uppercase tracking-wider font-semibold shadow-lg shadow-bxc-accent/25"
+                className="px-6 sm:px-7 py-3 text-xs uppercase tracking-wider font-semibold shadow-lg shadow-bxc-accent/25 min-h-[44px] flex items-center justify-center"
               >
                 Start Your Project →
               </MagneticButton>
@@ -151,7 +151,7 @@ export default function Hero() {
                   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
                   window.history.pushState(null, '', '#projects')
                 }}
-                className="text-xs font-semibold uppercase tracking-wider text-bxc-bg/90 hover:text-bxc-accent transition-colors duration-200 inline-flex items-center gap-2 group py-2"
+                className="text-xs font-semibold uppercase tracking-wider text-bxc-bg/90 hover:text-bxc-accent transition-colors duration-200 inline-flex items-center gap-2 group py-2.5 min-h-[44px] px-2"
               >
                 <span>View Portfolio</span>
                 <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
@@ -160,12 +160,12 @@ export default function Hero() {
           </div>
 
           {/* Floating Trust Card */}
-          <div className="lg:col-span-4 flex lg:justify-end">
+          <div className="lg:col-span-4 flex lg:justify-end mt-2 lg:mt-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="w-full max-w-sm glass-dark rounded-card-lg p-6 border border-white/10 shadow-2xl backdrop-blur-md hover:border-bxc-accent/40 transition-all duration-300"
+              className="w-full max-w-sm glass-dark rounded-card-lg p-5 sm:p-6 border border-white/10 shadow-2xl backdrop-blur-md hover:border-bxc-accent/40 transition-all duration-300"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex -space-x-2.5">

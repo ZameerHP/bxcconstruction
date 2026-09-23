@@ -153,7 +153,7 @@ function ServiceCard({ service, idx }: { service: ServiceItem; idx: number }) {
               onClick={handlePrev}
               onMouseDown={(e) => e.stopPropagation()}
               onTouchStart={(e) => e.stopPropagation()}
-              className="absolute left-2.5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/80 hover:bg-bxc-accent text-white flex items-center justify-center backdrop-blur-md border border-white/25 hover:border-bxc-accent transition-all duration-200 hover:scale-115 shadow-xl active:scale-95 cursor-pointer"
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/80 hover:bg-bxc-accent text-white flex items-center justify-center backdrop-blur-md border border-white/25 hover:border-bxc-accent transition-all duration-200 hover:scale-110 shadow-xl active:scale-95 cursor-pointer min-h-[44px] min-w-[44px]"
             >
               <svg className="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m15 18-6-6 6-6" />
@@ -166,7 +166,7 @@ function ServiceCard({ service, idx }: { service: ServiceItem; idx: number }) {
               onClick={handleNext}
               onMouseDown={(e) => e.stopPropagation()}
               onTouchStart={(e) => e.stopPropagation()}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-black/80 hover:bg-bxc-accent text-white flex items-center justify-center backdrop-blur-md border border-white/25 hover:border-bxc-accent transition-all duration-200 hover:scale-115 shadow-xl active:scale-95 cursor-pointer"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/80 hover:bg-bxc-accent text-white flex items-center justify-center backdrop-blur-md border border-white/25 hover:border-bxc-accent transition-all duration-200 hover:scale-110 shadow-xl active:scale-95 cursor-pointer min-h-[44px] min-w-[44px]"
             >
               <svg className="w-4 h-4 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m9 18 6-6-6-6" />
@@ -175,7 +175,7 @@ function ServiceCard({ service, idx }: { service: ServiceItem; idx: number }) {
 
             {/* Slide Indicator Dots */}
             <div
-              className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-black/65 px-3 py-1 rounded-full backdrop-blur-md border border-white/20"
+              className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 bg-black/65 px-3 py-1.5 rounded-full backdrop-blur-md border border-white/20"
               onClick={(e) => e.stopPropagation()}
             >
               {imageList.map((img, dotIdx) => (
@@ -188,10 +188,10 @@ function ServiceCard({ service, idx }: { service: ServiceItem; idx: number }) {
                     e.stopPropagation()
                     setCurrentImgIdx(dotIdx)
                   }}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  className={`transition-all duration-300 rounded-full cursor-pointer p-1 ${
                     dotIdx === currentImgIdx
-                      ? 'w-5 h-1.5 bg-bxc-accent'
-                      : 'w-1.5 h-1.5 bg-white/50 hover:bg-white'
+                      ? 'w-6 h-2 bg-bxc-accent'
+                      : 'w-2 h-2 bg-white/50 hover:bg-white'
                   }`}
                 />
               ))}
@@ -202,7 +202,7 @@ function ServiceCard({ service, idx }: { service: ServiceItem; idx: number }) {
 
       <div
         onClick={scrollToContact}
-        className="p-7 md:p-8 flex flex-col flex-grow cursor-pointer"
+        className="p-5 sm:p-7 md:p-8 flex flex-col flex-grow cursor-pointer"
       >
         <div className="flex items-center justify-between mb-4">
           <div className="w-10 h-10 rounded-xl bg-bxc-card flex items-center justify-center text-bxc-accent group-hover:bg-bxc-accent group-hover:text-bxc-bg transition-colors duration-300">
@@ -287,12 +287,12 @@ export default function Services() {
   ]
 
   return (
-    <section id="services" className="bg-bxc-bg py-24 md:py-32 w-full">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="services" className="bg-bxc-bg py-16 sm:py-24 md:py-32 w-full">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8">
         <ScrollReveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-4 sm:gap-6">
             <div>
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-3 mb-2.5 sm:mb-3">
                 <span className="w-6 h-[1px] bg-bxc-accent" />
                 <p className="text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent">
                   OUR SERVICES
@@ -309,7 +309,7 @@ export default function Services() {
         </ScrollReveal>
 
         <StaggerContainer
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           staggerDelay={0.07}
         >
           {services.map((service, idx) => (

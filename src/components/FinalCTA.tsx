@@ -71,36 +71,36 @@ _Sent via BXC Construction Website Consultation Form_`
   }
 
   return (
-    <section id="contact" className="bg-bxc-dark py-24 md:py-32 w-full text-bxc-bg relative overflow-hidden grain-overlay border-t border-bxc-border-dark">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <section id="contact" className="bg-bxc-dark py-16 sm:py-24 md:py-32 w-full text-bxc-bg relative overflow-hidden grain-overlay border-t border-bxc-border-dark">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
           {/* Left Column Description */}
           <div className="lg:col-span-5">
             <ScrollReveal>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-3 sm:mb-4">
                 <span className="w-6 h-[1px] bg-bxc-accent" />
                 <span className="text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent">
                   INITIATE YOUR BUILD
                 </span>
               </div>
-              <h2 className="text-section font-semibold text-bxc-bg mb-6 tracking-tight">
+              <h2 className="text-section font-semibold text-bxc-bg mb-4 sm:mb-6 tracking-tight">
                 Let’s Build Something Extraordinary
               </h2>
-              <p className="text-base text-bxc-bg/75 mb-8 leading-relaxed">
+              <p className="text-sm xs:text-base text-bxc-bg/75 mb-6 sm:mb-8 leading-relaxed">
                 Connect directly with our team to discuss project scope, architectural feasibility, and preliminary timeline estimates.
               </p>
 
-              <div className="space-y-4 pt-6 border-t border-white/10 text-xs md:text-sm text-bxc-bg/70">
+              <div className="space-y-3 sm:space-y-4 pt-5 sm:pt-6 border-t border-white/10 text-xs md:text-sm text-bxc-bg/70">
                 <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
                   <span>Instant submission via WhatsApp (+1 437 973-4229)</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-bxc-accent" />
+                  <span className="w-2 h-2 rounded-full bg-bxc-accent shrink-0" />
                   <span>Direct consultation with a Senior Project Lead</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-bxc-accent" />
+                  <span className="w-2 h-2 rounded-full bg-bxc-accent shrink-0" />
                   <span>Comprehensive NDA & Privacy protection</span>
                 </div>
               </div>
@@ -110,24 +110,24 @@ _Sent via BXC Construction Website Consultation Form_`
           {/* Right Column Form */}
           <div className="lg:col-span-7">
             <ScrollReveal delay={0.15}>
-              <div className="bg-bxc-dark-secondary/80 backdrop-blur-xl rounded-card-lg p-8 md:p-10 shadow-2xl border border-white/10">
+              <div className="bg-bxc-dark-secondary/80 backdrop-blur-xl rounded-card-lg p-5 sm:p-8 md:p-10 shadow-2xl border border-white/10">
                 {submitted ? (
                   <div className="py-8 text-center">
                     <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto mb-4 text-2xl">
                       ✓
                     </div>
-                    <h3 className="text-2xl font-bold text-bxc-bg mb-2">Consultation Request Dispatched</h3>
-                    <p className="text-sm text-bxc-bg/70 max-w-md mx-auto mb-6">
+                    <h3 className="text-xl sm:text-2xl font-bold text-bxc-bg mb-2">Consultation Request Dispatched</h3>
+                    <p className="text-xs sm:text-sm text-bxc-bg/70 max-w-md mx-auto mb-6">
                       Your details have been forwarded to our WhatsApp line at <span className="text-bxc-accent font-semibold">+1 (437) 973-4229</span>. If WhatsApp didn’t open automatically, click the button below to continue.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                       {whatsappLink && (
                         <a
                           href={whatsappLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn-bronze rounded-full px-6 py-3 text-xs uppercase tracking-widest font-bold shadow-lg inline-flex items-center gap-2"
+                          className="btn-bronze rounded-full px-6 py-3 text-xs uppercase tracking-widest font-bold shadow-lg inline-flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto text-center"
                         >
                           <span>Open in WhatsApp (437 973 4229) →</span>
                         </a>
@@ -145,15 +145,15 @@ _Sent via BXC Construction Website Consultation Form_`
                             message: '',
                           })
                         }}
-                        className="text-xs uppercase tracking-wider text-bxc-bg/60 hover:text-white transition-colors underline py-2"
+                        className="text-xs uppercase tracking-wider text-bxc-bg/60 hover:text-white transition-colors underline py-2 min-h-[44px]"
                       >
                         Submit Another Inquiry
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <form className="space-y-5" onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                       <div>
                         <label htmlFor="name" className="block text-[11px] uppercase tracking-wider font-semibold text-bxc-bg/80 mb-2">
                           Full Name *
@@ -166,7 +166,7 @@ _Sent via BXC Construction Website Consultation Form_`
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
+                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-base md:text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
                           placeholder="Your full name"
                         />
                       </div>
@@ -183,13 +183,13 @@ _Sent via BXC Construction Website Consultation Form_`
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
+                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-base md:text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
                           placeholder="your@email.com"
                         />
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                       <div>
                         <label htmlFor="phone" className="block text-[11px] uppercase tracking-wider font-semibold text-bxc-bg/80 mb-2">
                           Phone Number
@@ -201,7 +201,7 @@ _Sent via BXC Construction Website Consultation Form_`
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
+                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-base md:text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
                           placeholder="Your phone number"
                         />
                       </div>
@@ -217,7 +217,7 @@ _Sent via BXC Construction Website Consultation Form_`
                           name="location"
                           value={formData.location}
                           onChange={handleChange}
-                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
+                          className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-base md:text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all"
                           placeholder="City, Neighborhood, etc."
                         />
                       </div>
@@ -234,7 +234,7 @@ _Sent via BXC Construction Website Consultation Form_`
                         required
                         value={formData.projectType}
                         onChange={handleChange}
-                        className="w-full rounded-xl bg-[#1d201e] border border-white/15 px-4 py-3 text-sm text-bxc-bg focus:outline-none focus:border-bxc-accent transition-all"
+                        className="w-full rounded-xl bg-[#1d201e] border border-white/15 px-4 py-3 text-base md:text-sm text-bxc-bg focus:outline-none focus:border-bxc-accent transition-all"
                       >
                         <option value="" disabled>Select project type...</option>
                         <option value="Custom Residential">Custom Residential</option>
@@ -258,7 +258,7 @@ _Sent via BXC Construction Website Consultation Form_`
                         required
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all resize-none"
+                        className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-3 text-base md:text-sm text-bxc-bg placeholder:text-bxc-bg/30 focus:outline-none focus:border-bxc-accent focus:bg-white/10 transition-all resize-none"
                         placeholder="Tell us briefly about your project..."
                       />
                     </div>
@@ -267,7 +267,7 @@ _Sent via BXC Construction Website Consultation Form_`
                       suppressHydrationWarning
                       type="submit"
                       disabled={loading}
-                      className="btn-bronze rounded-full px-8 py-3.5 w-full text-xs uppercase tracking-widest font-bold shadow-lg shadow-bxc-accent/25 hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2"
+                      className="btn-bronze rounded-full px-8 py-3.5 w-full text-xs uppercase tracking-widest font-bold shadow-lg shadow-bxc-accent/25 hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 min-h-[48px]"
                     >
                       {loading ? (
                         <span>Processing...</span>

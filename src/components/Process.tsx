@@ -85,12 +85,12 @@ export default function Process() {
     <section
       ref={sectionRef}
       id="process"
-      className="bg-bxc-bg py-28 md:py-36 w-full relative overflow-hidden border-t border-bxc-border-light/60"
+      className="bg-bxc-bg py-16 sm:py-24 md:py-36 w-full relative overflow-hidden border-t border-bxc-border-light/60"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8">
         <ScrollReveal>
-          <div className="mb-20 md:mb-24 max-w-2xl">
-            <div className="flex items-center gap-3 mb-3">
+          <div className="mb-12 sm:mb-20 md:mb-24 max-w-2xl">
+            <div className="flex items-center gap-3 mb-2.5 sm:mb-3">
               <span className="w-6 h-[1.5px] bg-bxc-accent" />
               <p className="text-eyebrow uppercase tracking-eyebrow font-semibold text-bxc-accent">
                 OUR PROCESS
@@ -144,28 +144,28 @@ export default function Process() {
         </div>
 
         {/* Mobile & Tablet Vertical Connecting Timeline */}
-        <div className="block lg:hidden relative ml-3 mt-12">
+        <div className="block lg:hidden relative ml-0 sm:ml-2 mt-8 sm:mt-12">
           {/* Static Vertical Line */}
-          <div className="absolute top-6 bottom-6 left-6 w-[2px] bg-bxc-border-light z-0" />
+          <div className="absolute top-5 bottom-5 left-5 sm:left-6 w-[2px] bg-bxc-border-light z-0" />
 
           {/* Animated Vertical Line */}
           <motion.div
             style={{ scaleY: lineScaleY, transformOrigin: 'top' }}
-            className="absolute top-6 bottom-6 left-6 w-[2px] bg-bxc-accent z-0 shadow-[0_0_8px_rgba(176,141,87,0.5)]"
+            className="absolute top-5 bottom-5 left-5 sm:left-6 w-[2px] bg-bxc-accent z-0 shadow-[0_0_8px_rgba(176,141,87,0.5)]"
           />
 
-          <div className="flex flex-col space-y-10 relative z-10">
+          <div className="flex flex-col space-y-6 sm:space-y-10 relative z-10">
             {steps.map((item, idx) => (
               <ScrollReveal key={item.step} delay={idx * 0.1}>
-                <div className="flex items-start gap-6 group">
+                <div className="flex items-start gap-3 sm:gap-6 group">
                   {/* Node */}
-                  <div className="w-12 h-12 rounded-full border-2 border-bxc-accent bg-bxc-dark text-bxc-accent flex items-center justify-center text-xs font-mono font-bold shrink-0 shadow-md transition-all duration-300 group-hover:bg-bxc-accent group-hover:text-bxc-bg">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-bxc-accent bg-bxc-dark text-bxc-accent flex items-center justify-center text-[11px] sm:text-xs font-mono font-bold shrink-0 shadow-md transition-all duration-300 group-hover:bg-bxc-accent group-hover:text-bxc-bg">
                     {item.step}
                   </div>
 
                   {/* Card */}
-                  <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-bxc-border-light card-premium">
-                    <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-1 bg-white/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-bxc-border-light card-premium">
+                    <div className="flex items-center gap-3 mb-2.5 sm:mb-3">
                       <div className="w-8 h-8 rounded-lg bg-bxc-card border border-bxc-border-light text-bxc-accent flex items-center justify-center shrink-0">
                         {item.icon}
                       </div>

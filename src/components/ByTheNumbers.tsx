@@ -9,11 +9,11 @@ export default function ByTheNumbers() {
   const ref2 = useCountUp({ end: 4, suffix: '+' })
 
   return (
-    <section id="stats" className="w-full bg-bxc-dark py-24 md:py-32 text-bxc-bg border-t border-bxc-border-dark relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+    <section id="stats" className="w-full bg-bxc-dark py-16 sm:py-24 md:py-32 text-bxc-bg border-t border-bxc-border-dark relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8 relative z-10">
         <ScrollReveal>
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="text-center mb-10 sm:mb-16 max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-3 mb-3 sm:mb-4">
               <span className="w-6 h-[1px] bg-bxc-accent" />
               <span className="text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent">
                 TRACK RECORD
@@ -26,11 +26,11 @@ export default function ByTheNumbers() {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {/* Card 1: 319+ Completed Projects */}
           <StaggerItem>
-            <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[170px]">
-              <div className="text-4xl md:text-5xl font-bold text-bxc-accent mb-2 tracking-tight">
+            <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-6 sm:p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[150px] sm:min-h-[170px]">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-bxc-accent mb-2 tracking-tight">
                 <span ref={ref1}>319+</span>
               </div>
               <div className="text-xs text-bxc-bg/70 uppercase tracking-widest font-semibold">
@@ -41,8 +41,8 @@ export default function ByTheNumbers() {
 
           {/* Card 2: 4+ Years Experience */}
           <StaggerItem>
-            <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[170px]">
-              <div className="text-4xl md:text-5xl font-bold text-bxc-accent mb-2 tracking-tight">
+            <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-6 sm:p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[150px] sm:min-h-[170px]">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-bxc-accent mb-2 tracking-tight">
                 <span ref={ref2}>4+</span>
               </div>
               <div className="text-xs text-bxc-bg/70 uppercase tracking-widest font-semibold">
@@ -53,8 +53,8 @@ export default function ByTheNumbers() {
 
           {/* Card 3: 2022 Established */}
           <StaggerItem>
-            <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[170px]">
-              <div className="text-4xl md:text-5xl font-bold text-bxc-accent mb-2 tracking-tight">
+            <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-6 sm:p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[150px] sm:min-h-[170px]">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-bxc-accent mb-2 tracking-tight">
                 2022
               </div>
               <div className="text-xs text-bxc-bg/70 uppercase tracking-widest font-semibold">
@@ -65,8 +65,8 @@ export default function ByTheNumbers() {
 
           {/* Card 4: Licensed Construction Company */}
           <StaggerItem>
-            <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[170px]">
-              <div className="w-12 h-12 rounded-full border-2 border-bxc-accent text-bxc-accent flex items-center justify-center mb-2.5 shadow-glow">
+            <div className="bg-bxc-dark-secondary/70 backdrop-blur-md rounded-card-lg p-6 sm:p-8 border border-white/10 text-center shadow-xl hover:border-bxc-accent/50 transition-all duration-300 group flex flex-col items-center justify-center min-h-[150px] sm:min-h-[170px]">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-bxc-accent text-bxc-accent flex items-center justify-center mb-2.5 shadow-glow">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
                   <path d="m9 12 2 2 4-4" />

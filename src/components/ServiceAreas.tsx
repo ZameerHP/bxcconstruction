@@ -16,11 +16,11 @@ const areas = [
 
 export default function ServiceAreas() {
   return (
-    <section id="service-areas" className="bg-bxc-bg py-20 md:py-24 w-full border-t border-bxc-border-light/60">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="service-areas" className="bg-bxc-bg py-14 sm:py-20 md:py-24 w-full border-t border-bxc-border-light/60">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8">
         <ScrollReveal>
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="flex items-center justify-center gap-3 mb-3">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+            <div className="flex items-center justify-center gap-3 mb-2.5 sm:mb-3">
               <span className="w-6 h-[1px] bg-bxc-accent" />
               <p className="text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent">
                 WHERE WE WORK
@@ -34,12 +34,12 @@ export default function ServiceAreas() {
         </ScrollReveal>
 
         <StaggerContainer
-          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-4 max-w-5xl mx-auto"
+          className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 sm:gap-3 md:gap-4 max-w-5xl mx-auto"
           staggerDelay={0.05}
         >
           {areas.map((area, idx) => (
             <StaggerItem key={idx}>
-              <div className="flex items-center justify-center gap-1.5 px-4 py-3 rounded-card bg-white border border-bxc-border-light hover:border-bxc-accent hover:shadow-md transition-all duration-300 group cursor-default text-center">
+              <div className="flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 sm:py-3 rounded-card bg-white border border-bxc-border-light hover:border-bxc-accent hover:shadow-md transition-all duration-300 group cursor-default text-center">
                 <span className="text-bxc-accent text-xs group-hover:scale-110 transition-transform">
                   📍
                 </span>

@@ -24,12 +24,14 @@
 
   /* GPU-accelerated smooth rendering for all elements */
   *, *::before, *::after {
+    box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   img, video {
     max-width: 100%;
+    height: auto;
     transform: translateZ(0);
   }
 
@@ -264,3 +266,16 @@ input:focus, textarea:focus, select:focus {
   border-color: #B08D57 !important;
   box-shadow: 0 0 0 2px rgba(176, 141, 87, 0.2) !important;
 }
+
+/* ==============================
+   Accessibility: Reduced Motion
+   ============================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

@@ -79,10 +79,10 @@ const industries = [
 
 export default function Industries() {
   return (
-    <section id="industries" className="w-full bg-bxc-bg py-24 md:py-28 border-t border-bxc-border-light/60">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="industries" className="w-full bg-bxc-bg py-16 sm:py-24 md:py-28 border-t border-bxc-border-light/60">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8">
         <ScrollReveal>
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-3 mb-2.5 sm:mb-3">
             <span className="w-6 h-[1px] bg-bxc-accent" />
             <span className="text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent">
               SECTORS OF EXPERTISE
@@ -93,10 +93,10 @@ export default function Industries() {
           </h2>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 mt-12" staggerDelay={0.06}>
+        <StaggerContainer className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-5 mt-8 sm:mt-12" staggerDelay={0.06}>
           {industries.map((item, idx) => (
             <StaggerItem key={idx}>
-              <div className="flex flex-col items-center text-center p-6 rounded-card bg-white border border-bxc-border-light hover:border-bxc-accent/50 hover:shadow-xl transition-all duration-300 h-full group cursor-default">
+              <div className="flex flex-col items-center text-center p-4 sm:p-6 rounded-card bg-white border border-bxc-border-light hover:border-bxc-accent/50 hover:shadow-xl transition-all duration-300 h-full group cursor-default">
                 <div className="w-12 h-12 rounded-xl bg-bxc-card flex items-center justify-center text-bxc-accent mb-4 group-hover:bg-bxc-accent group-hover:text-bxc-bg group-hover:scale-110 transition-all duration-300">
                   {item.icon}
                 </div>

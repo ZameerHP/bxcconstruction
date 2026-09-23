@@ -26,10 +26,10 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-bxc-dark py-16 md:py-24 w-full text-bxc-bg border-t border-bxc-border-dark relative overflow-hidden grain-overlay">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+    <footer className="bg-bxc-dark py-12 sm:py-16 md:py-24 w-full text-bxc-bg border-t border-bxc-border-dark relative overflow-hidden grain-overlay">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8 relative z-10">
         <ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-12 border-b border-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-8 pb-10 sm:pb-12 border-b border-white/10">
             {/* Column 1 - Brand & Identity */}
             <div className="lg:col-span-5">
               <div className="mb-4">
@@ -41,7 +41,7 @@ export default function Footer() {
               <p className="text-xs md:text-sm text-bxc-bg/60 max-w-sm leading-relaxed mb-6">
                 Premium design-build construction firm delivering uncompromising craftsmanship for luxury residential estates and commercial developments.
               </p>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <span className="px-3 py-1 rounded-full text-[10px] font-mono tracking-wider bg-white/5 border border-white/10 text-bxc-bg/70">
                   LICENSE #GC-884920
                 </span>
@@ -56,13 +56,13 @@ export default function Footer() {
               <h3 className="text-xs uppercase tracking-widest font-bold text-bxc-accent mb-4">
                 EXPLORE
               </h3>
-              <ul className="space-y-2.5 text-xs md:text-sm text-bxc-bg/70">
+              <ul className="space-y-2 text-xs md:text-sm text-bxc-bg/70">
                 <li>
                   <Link
                     href={getHref('services')}
                     prefetch={false}
                     onClick={(e) => handleAnchorClick(e, 'services')}
-                    className="hover:text-bxc-accent transition-colors"
+                    className="hover:text-bxc-accent transition-colors py-1 inline-block"
                   >
                     Services
                   </Link>
@@ -72,7 +72,7 @@ export default function Footer() {
                     href={getHref('projects')}
                     prefetch={false}
                     onClick={(e) => handleAnchorClick(e, 'projects')}
-                    className="hover:text-bxc-accent transition-colors"
+                    className="hover:text-bxc-accent transition-colors py-1 inline-block"
                   >
                     Selected Projects
                   </Link>
@@ -82,7 +82,7 @@ export default function Footer() {
                     href={getHref('process')}
                     prefetch={false}
                     onClick={(e) => handleAnchorClick(e, 'process')}
-                    className="hover:text-bxc-accent transition-colors"
+                    className="hover:text-bxc-accent transition-colors py-1 inline-block"
                   >
                     Five-Phase Process
                   </Link>
@@ -92,7 +92,7 @@ export default function Footer() {
                     href={getHref('quality')}
                     prefetch={false}
                     onClick={(e) => handleAnchorClick(e, 'quality')}
-                    className="hover:text-bxc-accent transition-colors"
+                    className="hover:text-bxc-accent transition-colors py-1 inline-block"
                   >
                     Standards & Quality
                   </Link>
@@ -102,7 +102,7 @@ export default function Footer() {
                     href={getHref('faq')}
                     prefetch={false}
                     onClick={(e) => handleAnchorClick(e, 'faq')}
-                    className="hover:text-bxc-accent transition-colors"
+                    className="hover:text-bxc-accent transition-colors py-1 inline-block"
                   >
                     FAQ
                   </Link>
@@ -115,12 +115,12 @@ export default function Footer() {
               <h3 className="text-xs uppercase tracking-widest font-bold text-bxc-accent mb-4">
                 DISCIPLINES
               </h3>
-              <ul className="space-y-2.5 text-xs md:text-sm text-bxc-bg/70">
-                <li>Custom Homes</li>
-                <li>Commercial Builds</li>
-                <li>Structural Drywall</li>
-                <li>Poured Concrete</li>
-                <li>Engineering Feasibility</li>
+              <ul className="space-y-2 text-xs md:text-sm text-bxc-bg/70">
+                <li className="py-1">Custom Homes</li>
+                <li className="py-1">Commercial Builds</li>
+                <li className="py-1">Structural Drywall</li>
+                <li className="py-1">Poured Concrete</li>
+                <li className="py-1">Engineering Feasibility</li>
               </ul>
             </div>
 
@@ -135,7 +135,7 @@ export default function Footer() {
                 <p className="pt-2 font-mono text-bxc-accent">+1 (437) 450-5507</p>
                 <p className="font-mono text-bxc-accent">+1 (437) 973-4229</p>
                 <p className="pt-1">
-                  <a href="mailto:info@bxcconstruction.ca" className="hover:text-white transition-colors underline">
+                  <a href="mailto:info@bxcconstruction.ca" className="hover:text-white transition-colors underline py-1 inline-block">
                     info@bxcconstruction.ca
                   </a>
                 </p>
@@ -143,14 +143,14 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-bxc-bg/40">
+          <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-bxc-bg/40 text-center md:text-left">
             <div>
               © {new Date().getFullYear()} BXC Construction Inc. All rights reserved.
             </div>
-            <div className="flex items-center gap-6">
-              <Link href="/privacy-policy" className="hover:text-bxc-accent transition-colors">Privacy Policy</Link>
-              <Link href="/terms-of-service" className="hover:text-bxc-accent transition-colors">Terms of Service</Link>
-              <Link href="/safety-protocols" className="hover:text-bxc-accent transition-colors">Safety Protocols</Link>
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+              <Link href="/privacy-policy" className="hover:text-bxc-accent transition-colors py-1">Privacy Policy</Link>
+              <Link href="/terms-of-service" className="hover:text-bxc-accent transition-colors py-1">Terms of Service</Link>
+              <Link href="/safety-protocols" className="hover:text-bxc-accent transition-colors py-1">Safety Protocols</Link>
             </div>
           </div>
         </ScrollReveal>

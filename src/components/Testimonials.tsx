@@ -36,12 +36,12 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="bg-bxc-bg py-24 md:py-32 w-full border-t border-bxc-border-light/60">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="testimonials" className="bg-bxc-bg py-16 sm:py-24 md:py-32 w-full border-t border-bxc-border-light/60">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8">
         <ScrollReveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 gap-4 sm:gap-6">
             <div>
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-3 mb-2.5 sm:mb-3">
                 <span className="w-6 h-[1px] bg-bxc-accent" />
                 <span className="text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent">
                   CLIENT VOICES
@@ -57,10 +57,10 @@ export default function Testimonials() {
           </div>
         </ScrollReveal>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <StaggerItem key={index}>
-              <div className="bg-white rounded-card-lg p-8 md:p-10 border border-bxc-border-light h-full flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-2xl hover:border-bxc-accent/40 transition-all duration-300">
+              <div className="bg-white rounded-card-lg p-6 sm:p-8 md:p-10 border border-bxc-border-light h-full flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-2xl hover:border-bxc-accent/40 transition-all duration-300">
                 <div>
                   <div className="flex items-center gap-1 mb-6">
                     {[...Array(5)].map((_, i) => (

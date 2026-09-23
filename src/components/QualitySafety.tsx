@@ -73,21 +73,21 @@ export default function QualitySafety() {
   }
 
   return (
-    <section id="quality" className="w-full bg-bxc-dark py-24 md:py-32 text-bxc-bg border-y border-bxc-border-dark relative overflow-hidden">
+    <section id="quality" className="w-full bg-bxc-dark py-16 sm:py-24 md:py-32 text-bxc-bg border-y border-bxc-border-dark relative overflow-hidden">
       {/* Background Architectural Grid Pattern / Ambient Lighting */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(176,141,87,0.07)_0%,transparent_70%)] pointer-events-none" />
       <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-bxc-accent/[0.04] blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8 relative z-10">
         {/* Eyebrow and Heading Centered */}
         <motion.div
           initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-3xl mx-auto mb-16 md:mb-20"
+          className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 md:mb-20"
         >
-          <div className="inline-flex items-center justify-center gap-3 mb-4">
+          <div className="inline-flex items-center justify-center gap-3 mb-3 sm:mb-4">
             <span className="w-8 h-[1px] bg-bxc-accent/80" />
             <span className="text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent">
               CERTIFIED STANDARDS
@@ -105,13 +105,13 @@ export default function QualitySafety() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-14 md:mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10 sm:mb-14 md:mb-16"
         >
           {pillars.map((pillar, idx) => (
             <motion.div
               key={pillar.num}
               variants={cardVariants}
-              className="relative bg-[#161918] rounded-card-lg p-8 md:p-9 border border-bxc-accent/[0.15] shadow-card-dark flex flex-col justify-between overflow-hidden group transition-all duration-300 hover:-translate-y-2 hover:border-bxc-accent/45 hover:shadow-[0_20px_45px_rgba(0,0,0,0.6),0_0_35px_rgba(176,141,87,0.14)]"
+              className="relative bg-[#161918] rounded-card-lg p-6 sm:p-8 md:p-9 border border-bxc-accent/[0.15] shadow-card-dark flex flex-col justify-between overflow-hidden group transition-all duration-300 hover:-translate-y-2 hover:border-bxc-accent/45 hover:shadow-[0_20px_45px_rgba(0,0,0,0.6),0_0_35px_rgba(176,141,87,0.14)]"
             >
               {/* Oversized Ghost Numeral */}
               <span className="absolute top-5 right-6 text-6xl md:text-7xl font-extralight text-bxc-accent/[0.08] select-none pointer-events-none transition-all duration-500 group-hover:text-bxc-accent/[0.16] group-hover:scale-105 tracking-tighter">

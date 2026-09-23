@@ -11,6 +11,9 @@ const siteUrl =
 
 export const viewport: Viewport = {
   themeColor: '#111413',
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 }
 
 export const metadata: Metadata = {

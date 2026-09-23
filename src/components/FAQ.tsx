@@ -35,11 +35,11 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="bg-bxc-bg py-24 md:py-32 w-full border-t border-bxc-border-light/60">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="faq" className="bg-bxc-bg py-16 sm:py-24 md:py-32 w-full border-t border-bxc-border-light/60">
+      <div className="max-w-7xl mx-auto px-4 xs:px-6 md:px-8">
         <ScrollReveal>
-          <div className="mb-16 text-center max-w-2xl mx-auto">
-            <span className="block text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent mb-3">
+          <div className="mb-10 sm:mb-16 text-center max-w-2xl mx-auto">
+            <span className="block text-eyebrow uppercase tracking-eyebrow font-medium text-bxc-accent mb-2.5 sm:mb-3">
               FREQUENTLY ASKED QUESTIONS
             </span>
             <h2 className="text-section font-semibold text-bxc-text tracking-tight">
@@ -48,7 +48,7 @@ export default function FAQ() {
           </div>
         </ScrollReveal>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="max-w-3xl mx-auto space-y-3 sm:space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index
             return (
@@ -63,11 +63,11 @@ export default function FAQ() {
                   <button
                     suppressHydrationWarning
                     onClick={() => toggleFAQ(index)}
-                    className="w-full flex items-center justify-between p-6 text-left font-semibold focus:outline-none"
+                    className="w-full flex items-center justify-between p-4 sm:p-6 text-left font-semibold focus:outline-none min-h-[56px] cursor-pointer"
                     aria-expanded={isOpen}
                   >
-                    <span className="text-sm md:text-base pr-4">{faq.question}</span>
-                    <div className="w-8 h-8 rounded-full bg-bxc-accent/20 flex items-center justify-center shrink-0">
+                    <span className="text-sm md:text-base pr-3 sm:pr-4">{faq.question}</span>
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-bxc-accent/20 flex items-center justify-center shrink-0">
                       <motion.div
                         animate={{ rotate: isOpen ? 45 : 0 }}
                         transition={{ duration: 0.25 }}
@@ -86,7 +86,7 @@ export default function FAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: 'easeOut' }}
                       >
-                        <div className="px-6 pb-6 text-xs md:text-sm leading-relaxed text-bxc-bg/75 border-t border-white/10 pt-4">
+                        <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-xs sm:text-sm leading-relaxed text-bxc-bg/75 border-t border-white/10 pt-3 sm:pt-4">
                           {faq.answer}
                         </div>
                       </motion.div>
