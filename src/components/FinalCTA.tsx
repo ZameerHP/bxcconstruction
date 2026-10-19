@@ -15,6 +15,7 @@ export default function FinalCTA() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [whatsappLink, setWhatsappLink] = useState('')
+  const [submitError, setSubmitError] = useState('')
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -26,6 +27,7 @@ export default function FinalCTA() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setSubmitError('')
 
     // Format WhatsApp message with all filled details
     const whatsappMessage = `*New Consultation Request — BXC Construction*
@@ -50,23 +52,22 @@ _Sent via BXC Construction Website Consultation Form_`
 
     try {
       // Dispatch lead payload to server backend
-      await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
-    } catch (err) {
-      console.warn('API contact log fallback triggered:', err)
-    }
+      const result = await response.json().catch(() => ({}))
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Your request could not be sent. Please try again.')
+      }
 
-    setLoading(false)
-    setSubmitted(true)
-
-    // Open WhatsApp automatically in a new window/tab
-    try {
-      window.open(url, '_blank', 'noopener,noreferrer')
+      setSubmitted(true)
+      // Keep WhatsApp as an optional follow-up, not a substitute for sending the email.
     } catch (err) {
-      console.error('Popup blocked or error opening WhatsApp:', err)
+      setSubmitError(err instanceof Error ? err.message : 'Unable to send your request. Please try again.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -118,7 +119,7 @@ _Sent via BXC Construction Website Consultation Form_`
                     </div>
                     <h3 className="text-xl sm:text-2xl font-bold text-bxc-bg mb-2">Consultation Request Dispatched</h3>
                     <p className="text-xs sm:text-sm text-bxc-bg/70 max-w-md mx-auto mb-6">
-                      Your details have been forwarded to our WhatsApp line at <span className="text-bxc-accent font-semibold">+1 (437) 973-4229</span>. If WhatsApp didn’t open automatically, click the button below to continue.
+                      Your consultation request has been emailed to our team. You can also continue the conversation directly on WhatsApp.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
@@ -129,7 +130,7 @@ _Sent via BXC Construction Website Consultation Form_`
                           rel="noopener noreferrer"
                           className="btn-bronze rounded-full px-6 py-3 text-xs uppercase tracking-widest font-bold shadow-lg inline-flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto text-center"
                         >
-                          <span>Open in WhatsApp (437 973 4229) →</span>
+                          <span>Continue on WhatsApp (+1 437 973-4229) →</span>
                         </a>
                       )}
                       <button
@@ -262,6 +263,12 @@ _Sent via BXC Construction Website Consultation Form_`
                         placeholder="Tell us briefly about your project..."
                       />
                     </div>
+
+                    {submitError && (
+                      <p role="alert" className="rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                        {submitError}
+                      </p>
+                    )}
 
                     <button
                       suppressHydrationWarning
