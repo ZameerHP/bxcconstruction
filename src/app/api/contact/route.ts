@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     if (!name || !email || !message || !projectType) {
       return NextResponse.json({ error: 'Please complete all required fields.' }, { status: 400 })
     }
-    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
     }
 
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
           message,
           '',
           'Received: ' + new Date().toISOString(),
-        ].join('\\n'),
+        ].join('\n'),
       }),
       cache: 'no-store',
     })
