@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ScrollReveal from '@/components/ScrollReveal'
 import Logo from '@/components/Logo'
-import { Instagram, Facebook } from 'lucide-react'
 
 export default function Footer() {
   const pathname = usePathname()
@@ -62,7 +61,11 @@ export default function Footer() {
                     aria-label="Follow BXC Construction on Instagram"
                     className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-bxc-bg/75 transition-all duration-300 hover:-translate-y-0.5 hover:border-pink-400/60 hover:bg-pink-500/10 hover:text-pink-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400"
                   >
-                    <Instagram size={19} strokeWidth={1.8} aria-hidden="true" />
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect x="3" y="3" width="18" height="18" rx="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                    </svg>
                   </a>
                   <a
                     href="https://www.facebook.com/bxcconstruction"
@@ -71,7 +74,9 @@ export default function Footer() {
                     aria-label="Follow BXC Construction on Facebook"
                     className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-bxc-bg/75 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400/60 hover:bg-blue-500/10 hover:text-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
                   >
-                    <Facebook size={19} strokeWidth={1.8} aria-hidden="true" />
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M13.4 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6v2H6.7v3.2h2.8V21h3.9Z" />
+                    </svg>
                   </a>
                 </div>
               </div>
