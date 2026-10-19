@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ScrollReveal from '@/components/ScrollReveal'
 import Logo from '@/components/Logo'
+import { Instagram, Facebook } from 'lucide-react'
 
 export default function Footer() {
   const pathname = usePathname()
@@ -48,6 +49,31 @@ export default function Footer() {
                 <span className="px-3 py-1 rounded-full text-[10px] font-mono tracking-wider bg-white/5 border border-white/10 text-emerald-400">
                   BONDED & INSURED
                 </span>
+              </div>
+              <div className="mt-6">
+                <p className="text-xs uppercase tracking-[0.18em] text-bxc-bg/50 font-semibold mb-3">
+                  FOLLOW BXC
+                </p>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://www.instagram.com/bxc_construction_inc?srtk=ZTZncHBxMmJmdmFh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow BXC Construction on Instagram"
+                    className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-bxc-bg/75 transition-all duration-300 hover:-translate-y-0.5 hover:border-pink-400/60 hover:bg-pink-500/10 hover:text-pink-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400"
+                  >
+                    <Instagram size={19} strokeWidth={1.8} aria-hidden="true" />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/bxcconstruction"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow BXC Construction on Facebook"
+                    className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-bxc-bg/75 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400/60 hover:bg-blue-500/10 hover:text-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                  >
+                    <Facebook size={19} strokeWidth={1.8} aria-hidden="true" />
+                  </a>
+                </div>
               </div>
             </div>
 
