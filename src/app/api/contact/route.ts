@@ -4,44 +4,64 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      return NextResponse.json({ error: 'Email service is not configured.' }, { status: 503 })
+    }
+
     const body = await req.json()
-    const { name, email, phone, location, projectType, message } = body
+    const name = String(body.name || '').trim().slice(0, 120)
+    const email = String(body.email || '').trim().slice(0, 254)
+    const phone = String(body.phone || '').trim().slice(0, 80)
+    const location = String(body.location || '').trim().slice(0, 160)
+    const projectType = String(body.projectType || 'General Inquiry').trim().slice(0, 120)
+    const message = String(body.message || '').trim().slice(0, 5000)
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: 'Name, email, and project message are required.' },
-        { status: 400 }
-      )
+    if (!name || !email || !message || !projectType) {
+      return NextResponse.json({ error: 'Please complete all required fields.' }, { status: 400 })
+    }
+    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+      return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
     }
 
-    const submission = {
-      timestamp: new Date().toISOString(),
-      name: String(name).trim(),
-      email: String(email).trim(),
-      phone: String(phone || '').trim(),
-      location: String(location || '').trim(),
-      projectType: String(projectType || 'General Inquiry').trim(),
-      message: String(message).trim(),
-      destinationWhatsApp: '+1 (437) 973-4229',
-      destinationEmail: 'info@bxcconstruction.ca',
-    }
-
-    // In a production server environment, this logs the lead data and can trigger webhook/SMTP
-    console.log('[BXC Inbound Consultation Lead]:', JSON.stringify(submission, null, 2))
-
-    return NextResponse.json(
-      {
-        success: true,
-        message: 'Consultation request received successfully.',
-        lead: submission,
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + apiKey,
+        'Content-Type': 'application/json',
       },
-      { status: 200 }
-    )
+      body: JSON.stringify({
+        from: process.env.RESEND_FROM_EMAIL || 'BXC Construction Website <website@bxcconstruction.ca>',
+        to: [process.env.CONTACT_TO_EMAIL || 'info@bxcconstruction.ca'],
+        reply_to: email,
+        subject: 'New BXC Construction enquiry — ' + projectType,
+        text: [
+          'New consultation request from the BXC Construction website',
+          '',
+          'Name: ' + name,
+          'Email: ' + email,
+          'Phone: ' + (phone || 'Not provided'),
+          'Project location: ' + (location || 'Not provided'),
+          'Project type: ' + projectType,
+          '',
+          'Project details:',
+          message,
+          '',
+          'Received: ' + new Date().toISOString(),
+        ].join('\\n'),
+      }),
+      cache: 'no-store',
+    })
+
+    if (!response.ok) {
+      const details = await response.text()
+      console.error('Resend delivery failed:', response.status, details)
+      return NextResponse.json({ error: 'Email could not be sent. Please try again or contact us directly.' }, { status: 502 })
+    }
+
+    return NextResponse.json({ success: true, message: 'Your request has been emailed successfully.' })
   } catch (error) {
-    console.error('Error handling contact form submission:', error)
-    return NextResponse.json(
-      { error: 'Internal server error processing consultation request.' },
-      { status: 500 }
-    )
+    console.error('Contact form error:', error)
+    return NextResponse.json({ error: 'Unable to send your request right now.' }, { status: 500 })
   }
 }
